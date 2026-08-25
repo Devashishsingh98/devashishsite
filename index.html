@@ -11,19 +11,19 @@
   <meta property="og:url" content="https://devashish98.xyz/" />
   <style>
     :root {
-      --bg: #0e0f0c;
-      --paper: #171910;
-      --ink: #f3f0e4;
-      --muted: #b7b39a;
-      --line: #2a2c22;
-      --accent: #e6ff4b;
-      --accent-ink: #12140c;
-      --warn: #ff8a4a;
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --ink: #0f2744;
+      --muted: #4b5563;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-ink: #ffffff;
+      --navy: #0f2744;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--ink);
       line-height: 1.5;
@@ -32,53 +32,49 @@
     .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
     header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 0 8px; font-family: ui-sans-serif, system-ui, sans-serif;
-      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 22px 0 8px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
     }
-    header span { color: var(--accent); }
+    header span { color: #b91c1c; }
     .nav a { color: var(--muted); text-decoration: none; margin-left: 22px; }
-    .hero { padding: 56px 0 24px; }
+    .hero { padding: 48px 0 24px; }
     .kicker {
-      font-family: ui-sans-serif, system-ui, sans-serif;
-      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--accent); margin: 0 0 18px;
+      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #2563eb; margin: 0 0 14px; font-weight: 700;
     }
     h1 {
-      font-size: clamp(40px, 7vw, 84px);
-      line-height: 0.95; letter-spacing: -0.03em;
-      font-weight: 500; margin: 0 0 22px; max-width: 14ch;
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.1; letter-spacing: -0.02em;
+      font-weight: 800; margin: 0 0 18px; max-width: 16ch; color: var(--navy);
     }
-    .lede { font-size: 22px; color: var(--muted); max-width: 36ch; margin: 0 0 32px; }
+    .lede { font-size: 18px; color: var(--muted); max-width: 42ch; margin: 0 0 28px; }
     .row { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn {
       display: inline-block; text-decoration: none;
-      font-family: ui-sans-serif, system-ui, sans-serif;
-      font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
-      padding: 14px 18px; border-radius: 999px;
+      font-size: 14px; letter-spacing: 0.03em; text-transform: uppercase;
+      padding: 14px 18px; border-radius: 6px; font-weight: 700;
     }
-    .btn-primary { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
-    .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-ghost { border: 1px solid var(--line); color: var(--navy); background: #fff; }
     .grid {
       display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px;
-      padding: 12px 0 64px;
+      padding: 12px 0 56px;
     }
     .card {
       background: var(--paper); border: 1px solid var(--line);
-      border-radius: 18px; padding: 22px;
+      border-radius: 10px; padding: 22px; box-shadow: 0 1px 2px rgba(15,39,68,.04);
     }
-    .chat { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; }
-    .bubble { max-width: 85%; padding: 10px 12px; border-radius: 14px; margin: 10px 0; }
-    .them { background: #23251b; }
-    .us { background: var(--accent); color: var(--accent-ink); margin-left: auto; }
+    .chat { font-size: 14px; }
+    .bubble { max-width: 85%; padding: 10px 12px; border-radius: 12px; margin: 10px 0; }
+    .them { background: #f3f4f6; }
+    .us { background: #2563eb; color: #fff; margin-left: auto; }
     .meta { color: var(--muted); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
-    h2 { font-size: 36px; line-height: 1.1; margin: 0 0 12px; }
+    h2 { font-size: 28px; line-height: 1.2; margin: 0 0 12px; color: var(--navy); }
     ol { padding-left: 18px; color: var(--muted); }
-    .split { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; padding-bottom: 72px; }
-    .price { font-size: 42px; margin: 8px 0; }
+    .split { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; padding-bottom: 56px; }
+    .price { font-size: 40px; margin: 8px 0; color: var(--navy); font-weight: 800; }
     .fine { color: var(--muted); font-size: 15px; }
     footer {
       border-top: 1px solid var(--line); padding: 28px 0 48px;
-      font-family: ui-sans-serif, system-ui, sans-serif;
       font-size: 13px; color: var(--muted);
     }
     @media (max-width: 800px) {
@@ -87,42 +83,42 @@
     }
     #ah-bubble {
       position: fixed; right: 18px; bottom: 18px; z-index: 50;
-      width: 58px; height: 58px; border-radius: 50%;
-      background: var(--accent); color: var(--accent-ink);
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #2563eb; color: #fff;
       border: 0; cursor: pointer; font-weight: 800;
-      font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px;
-      box-shadow: 0 10px 30px rgba(230,255,75,0.25);
+      font-size: 12px;
+      box-shadow: 0 8px 20px rgba(37,99,235,.35);
     }
     #ah-panel {
-      display: none; position: fixed; right: 18px; bottom: 86px; z-index: 50;
-      width: min(360px, calc(100vw - 24px)); height: 520px;
-      background: #12140c; border: 1px solid var(--line); border-radius: 18px;
+      display: none; position: fixed; right: 18px; bottom: 84px; z-index: 50;
+      width: min(360px, calc(100vw - 24px)); height: 500px;
+      background: #fff; border: 1px solid #d1d5db; border-radius: 12px;
       overflow: hidden; flex-direction: column;
-      font-family: ui-sans-serif, system-ui, sans-serif;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
     }
     #ah-panel.open { display: flex; }
     #ah-head {
-      padding: 12px 14px; background: #1b1e12; border-bottom: 1px solid var(--line);
-      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 12px 14px; background: #0f2744; color: #fff;
+      font-size: 12px; letter-spacing: 0.04em;
     }
-    #ah-head strong { color: var(--accent); }
-    #ah-log { flex: 1; overflow: auto; padding: 12px; font-size: 14px; }
-    .ah-row { margin: 8px 0; max-width: 85%; padding: 9px 11px; border-radius: 14px; }
-    .ah-bot { background: #23251b; }
-    .ah-user { background: var(--accent); color: var(--accent-ink); margin-left: auto; }
-    #ah-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid var(--line); }
+    #ah-head strong { color: #93c5fd; }
+    #ah-log { flex: 1; overflow: auto; padding: 12px; font-size: 14px; background: #f8fafc; }
+    .ah-row { margin: 8px 0; max-width: 85%; padding: 9px 11px; border-radius: 12px; }
+    .ah-bot { background: #fff; border: 1px solid #e5e7eb; }
+    .ah-user { background: #2563eb; color: #fff; margin-left: auto; }
+    #ah-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #e5e7eb; background: #fff; }
     #ah-form input {
-      flex: 1; background: #1b1e12; color: var(--ink); border: 1px solid var(--line);
-      border-radius: 999px; padding: 10px 12px; font: inherit;
+      flex: 1; background: #fff; color: var(--ink); border: 1px solid #d1d5db;
+      border-radius: 8px; padding: 10px 12px; font: inherit;
     }
     #ah-form button {
-      background: var(--accent); color: var(--accent-ink); border: 0;
-      border-radius: 999px; padding: 10px 12px; font-weight: 700; cursor: pointer;
+      background: #2563eb; color: #fff; border: 0;
+      border-radius: 8px; padding: 10px 12px; font-weight: 700; cursor: pointer;
     }
     #ah-ticket {
-      display: none; margin: 10px; padding: 10px; border: 1px dashed var(--accent);
-      border-radius: 12px; font-size: 12px; color: var(--accent);
-      white-space: pre-wrap;
+      display: none; margin: 10px; padding: 10px; border: 1px dashed #2563eb;
+      border-radius: 8px; font-size: 12px; color: #1e3a8a;
+      white-space: pre-wrap; background: #eff6ff;
     }
   </style>
 </head>
@@ -199,7 +195,7 @@
 
     <footer>
       Afterhours · Devashish Singh · not affiliated with xAI.
-      Tap the yellow CHAT — play a customer at 11pm. Zip 85016.
+      Tap the blue CHAT — play a customer at 11pm. Zip 85016.
     </footer>
   </div>
 

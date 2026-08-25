@@ -5,52 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Afterhours mock</title>
   <style>
-    :root { --accent:#e6ff4b; --ink:#f3f0e4; --bg:#14160f; --muted:#b7b39a; --line:#2a2c22; }
     * { box-sizing: border-box; }
-    body { margin: 0; background: #0b0c09; color: var(--ink); font-family: ui-sans-serif, system-ui, sans-serif; }
-    .bar { background: #1c1e16; padding: 10px 14px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--line);
-      display: flex; gap: 8px; align-items: center; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: #444; }
-    .url { flex: 1; background: #10120c; border-radius: 999px; padding: 6px 12px; }
-    .note { max-width: 920px; margin: 0 auto; padding: 10px 16px; font-size: 13px; color: var(--muted); }
-    .note strong { color: var(--accent); }
-    .site { max-width: 920px; margin: 0 auto 80px; background: var(--bg); min-height: 70vh; padding: 36px 22px 80px; }
-    .brand { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; color: var(--accent); }
-    h1 { font-family: Georgia, serif; font-size: clamp(32px, 6vw, 56px); font-weight: 500; line-height: .95; margin: 12px 0; }
-    .lede { color: var(--muted); max-width: 36ch; font-size: 18px; }
-    .btn { display: inline-block; margin-top: 18px; background: var(--accent); color: #12140c; padding: 12px 16px; border-radius: 999px; font-weight: 700; text-decoration: none; }
-    #ah-bubble { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 58px; height: 58px; border-radius: 50%;
-      background: var(--accent); color: #12140c; border: 0; cursor: pointer; font-weight: 800; font-size: 13px; }
-    #ah-panel { display: none; position: fixed; right: 18px; bottom: 86px; z-index: 50; width: min(360px, calc(100vw - 24px)); height: 500px;
-      background: #12140c; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; flex-direction: column; }
+    body { margin: 0; background: #e8eaed; color: #1a1a1a; font-family: Arial, Helvetica, sans-serif; }
+    .chrome { background: #dfe1e5; padding: 8px 12px; display: flex; gap: 6px; align-items: center; font-size: 12px; color: #5f6368; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #c5c7ca; }
+    .url { flex: 1; background: #fff; border: 1px solid #c5c7ca; border-radius: 16px; padding: 5px 12px; }
+    .warn { background: #fff8e1; color: #6d4c00; font-size: 12px; padding: 8px 16px; text-align: center; }
+    .page { max-width: 980px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 0 1px #dadce0; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; border-bottom: 3px solid #b91c1c; }
+    .logo { font-weight: 800; color: #0f2744; font-size: 18px; }
+    .phone { color: #b91c1c; font-weight: 700; }
+    nav { background: #0f2744; color: #fff; padding: 10px 22px; font-size: 13px; }
+    nav span { margin-right: 18px; opacity: .9; }
+    .hero { padding: 40px 22px 50px; background: linear-gradient(180deg, #f4f7fb, #fff); }
+    h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 40px); color: #0f2744; line-height: 1.15; }
+    .lede { color: #4b5563; max-width: 42ch; line-height: 1.45; }
+    .cta { display: inline-block; margin-top: 16px; background: #b91c1c; color: #fff; padding: 12px 18px; border-radius: 4px; font-weight: 700; text-decoration: none; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 0 22px 40px; }
+    .card { border: 1px solid #e5e7eb; padding: 14px; border-radius: 6px; }
+    .card b { color: #0f2744; display: block; margin-bottom: 4px; }
+    .card span { color: #6b7280; font-size: 13px; }
+    footer { background: #0f2744; color: #cbd5e1; padding: 16px 22px; font-size: 12px; }
+    @media (max-width: 700px) { .cards { grid-template-columns: 1fr; } }
+    #ah-bubble {
+      position: fixed; right: 18px; bottom: 18px; z-index: 50;
+      width: 56px; height: 56px; border-radius: 50%; border: 0; cursor: pointer;
+      background: #2563eb; color: #fff; font-weight: 800; font-size: 12px;
+      box-shadow: 0 8px 20px rgba(37,99,235,.35);
+    }
+    #ah-panel {
+      display: none; position: fixed; right: 18px; bottom: 84px; z-index: 50;
+      width: min(340px, calc(100vw - 24px)); height: 480px;
+      background: #fff; border: 1px solid #d1d5db; border-radius: 12px;
+      overflow: hidden; flex-direction: column; box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    }
     #ah-panel.open { display: flex; }
-    #ah-head { padding: 12px 14px; background: #1b1e12; border-bottom: 1px solid var(--line); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
-    #ah-head strong { color: var(--accent); }
-    #ah-log { flex: 1; overflow: auto; padding: 12px; font-size: 14px; }
-    .ah-row { margin: 8px 0; max-width: 85%; padding: 9px 11px; border-radius: 14px; }
-    .ah-bot { background: #23251b; }
-    .ah-user { background: var(--accent); color: #12140c; margin-left: auto; }
-    #ah-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid var(--line); }
-    #ah-form input { flex: 1; background: #1b1e12; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 10px 12px; }
-    #ah-form button { background: var(--accent); color: #12140c; border: 0; border-radius: 999px; padding: 10px 12px; font-weight: 700; }
-    #ah-ticket { display: none; margin: 10px; padding: 10px; border: 1px dashed var(--accent); border-radius: 12px; font-size: 12px; color: var(--accent); white-space: pre-wrap; }
+    #ah-head { padding: 12px 14px; background: #0f2744; color: #fff; font-size: 13px; }
+    #ah-head strong { color: #93c5fd; }
+    #ah-log { flex: 1; overflow: auto; padding: 12px; font-size: 14px; background: #f8fafc; }
+    .ah-row { margin: 8px 0; max-width: 85%; padding: 8px 11px; border-radius: 12px; }
+    .ah-bot { background: #fff; border: 1px solid #e5e7eb; }
+    .ah-user { background: #2563eb; color: #fff; margin-left: auto; }
+    #ah-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #e5e7eb; background: #fff; }
+    #ah-form input { flex: 1; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; font: inherit; }
+    #ah-form button { background: #2563eb; color: #fff; border: 0; border-radius: 8px; padding: 10px 12px; font-weight: 700; }
+    #ah-ticket { display: none; margin: 10px; padding: 10px; border: 1px dashed #2563eb; border-radius: 8px; font-size: 12px; color: #1e3a8a; white-space: pre-wrap; background: #eff6ff; }
   </style>
 </head>
 <body>
-  <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url" id="urlbar"></div></div>
-  <p class="note">Mock only — <strong>not</strong> their live site. This is how the Afterhours bubble would sit on a page like theirs. Tap <strong>CHAT</strong>.</p>
-  <div class="site">
-    <div class="brand" id="brand"></div>
-    <h1 id="headline"></h1>
-    <p class="lede" id="lede"></p>
-    <a class="btn" href="#">Schedule service</a>
+  <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url" id="urlbar"></div></div>
+  <div class="warn">Preview only — not their live website. This is how the chat bubble would look on a normal HVAC page. Tap CHAT (blue, bottom right).</div>
+  <div class="page">
+    <header>
+      <div class="logo" id="brand"></div>
+      <div class="phone" id="phone">24/7 · (555) 010-0100</div>
+    </header>
+    <nav><span>Home</span><span>AC Repair</span><span>Heating</span><span>Maintenance</span><span>Contact</span></nav>
+    <section class="hero">
+      <h1 id="headline"></h1>
+      <p class="lede" id="lede"></p>
+      <a class="cta" href="#">Request service</a>
+    </section>
+    <div class="cards">
+      <div class="card"><b>Same-day repair</b><span>When the unit is down, you want a slot on the board — even after 6pm.</span></div>
+      <div class="card"><b>Licensed techs</b><span>The chat never pretends to be a technician. It books the job.</span></div>
+      <div class="card"><b>Service area</b><span id="area"></span></div>
+    </div>
+    <footer>Mock by Afterhours · Devashish Singh · not affiliated with this company</footer>
   </div>
   <button id="ah-bubble" type="button">CHAT</button>
   <div id="ah-panel">
     <div id="ah-head"></div>
     <div id="ah-log"></div>
     <div id="ah-ticket"></div>
-    <form id="ah-form"><input id="ah-input" autocomplete="off" placeholder="Type as the homeowner…" /><button type="submit">Send</button></form>
+    <form id="ah-form"><input id="ah-input" autocomplete="off" placeholder="Ask if they can come tomorrow…" /><button type="submit">Send</button></form>
   </div>
   <script>
     const COS = {
@@ -78,11 +106,12 @@
     const q = new URLSearchParams(location.search).get("id") || "mannys";
     const c = COS[q] || COS.mannys;
     document.title = "Mock — " + c.name;
-    document.getElementById("urlbar").textContent = "https://" + c.domain + "   (mock)";
-    document.getElementById("brand").textContent = c.name + " · " + c.city;
-    document.getElementById("headline").textContent = "AC repair in " + c.city + ". Still closed at 11pm — unless this chat is on.";
-    document.getElementById("lede").textContent = "This is a preview of Afterhours on a page like " + c.domain + ". Not their real website.";
-    document.getElementById("ah-head").innerHTML = "After hours · <strong>" + c.name + "</strong> · Sat 11:14pm closed";
+    document.getElementById("urlbar").textContent = "https://" + c.domain + "  (mock — not the real site)";
+    document.getElementById("brand").textContent = c.name;
+    document.getElementById("headline").textContent = c.city + " AC repair when you need it.";
+    document.getElementById("lede").textContent = "Same-day and next-morning slots. This preview shows the after-hours chat on a normal service site — not " + c.domain + " itself.";
+    document.getElementById("area").textContent = c.area;
+    document.getElementById("ah-head").innerHTML = c.name + " · <strong>we’re closed</strong> · I can still book you";
 
     const log = document.getElementById("ah-log");
     const panel = document.getElementById("ah-panel");
@@ -99,7 +128,7 @@
     document.getElementById("ah-bubble").onclick = () => {
       panel.classList.toggle("open");
       if (panel.classList.contains("open") && log.childElementCount === 0) {
-        bot("Hey — " + c.name + " is closed, but I can still check if we can take this in " + c.area + " and get you on the calendar. What’s going on with the AC?");
+        bot("Hi — " + c.name + " is closed, but I can check " + c.area + " and get you on the calendar. What’s going on with the AC?");
       }
     };
     document.getElementById("ah-form").onsubmit = (e) => {
@@ -112,21 +141,21 @@
       reply(t);
     };
     function reply(t) {
-      if (/(gas leak|carbon monoxide|fire)/i.test(t)) { bot("If you smell gas or CO, call 911. I can’t handle that."); return; }
-      if (state.step === "issue") { state.issue = t; state.step = "zip"; bot("Got it. What zip? We run " + c.area + "."); return; }
+      if (/(gas leak|carbon monoxide|fire)/i.test(t)) { bot("If you smell gas or CO, call 911."); return; }
+      if (state.step === "issue") { state.issue = t; state.step = "zip"; bot("Got it. What’s your zip? We cover " + c.area + "."); return; }
       if (state.step === "zip") {
         state.zip = (t.match(/\b\d{5}\b/) || [c.zip])[0];
         state.step = "when";
-        bot("That’s in area for this mock. Tomorrow 8:30 or 11:00?");
+        bot("In area for this preview. Tomorrow 8:30 or 11:00?");
         return;
       }
       if (state.step === "when") { state.when = t; state.step = "name"; bot("Name for the ticket?"); return; }
-      if (state.step === "name") { state.name = t; state.step = "phone"; bot("Mobile number?"); return; }
+      if (state.step === "name") { state.name = t; state.step = "phone"; bot("Best mobile number?"); return; }
       if (state.step === "phone") {
         state.phone = t; state.step = "done";
-        bot("Booked. " + c.name + " would text " + state.name + " in the morning. This is a mock — no real truck is coming.");
+        bot("Booked. " + c.name + " would text in the morning. This is a mock — no real truck is coming.");
         ticket.style.display = "block";
-        ticket.textContent = "LEAD TICKET (what " + c.name + " would get)\nName: " + state.name + "\nPhone: " + state.phone + "\nZip: " + state.zip + "\nIssue: " + state.issue + "\nSlot: " + state.when;
+        ticket.textContent = "LEAD TICKET for " + c.name + "\nName: " + state.name + "\nPhone: " + state.phone + "\nZip: " + state.zip + "\nIssue: " + state.issue + "\nSlot: " + state.when;
       }
     }
   </script>

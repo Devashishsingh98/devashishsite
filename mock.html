@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afterhours mock</title>
+  <style>
+    :root { --accent:#e6ff4b; --ink:#f3f0e4; --bg:#14160f; --muted:#b7b39a; --line:#2a2c22; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #0b0c09; color: var(--ink); font-family: ui-sans-serif, system-ui, sans-serif; }
+    .bar { background: #1c1e16; padding: 10px 14px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--line);
+      display: flex; gap: 8px; align-items: center; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #444; }
+    .url { flex: 1; background: #10120c; border-radius: 999px; padding: 6px 12px; }
+    .note { max-width: 920px; margin: 0 auto; padding: 10px 16px; font-size: 13px; color: var(--muted); }
+    .note strong { color: var(--accent); }
+    .site { max-width: 920px; margin: 0 auto 80px; background: var(--bg); min-height: 70vh; padding: 36px 22px 80px; }
+    .brand { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; color: var(--accent); }
+    h1 { font-family: Georgia, serif; font-size: clamp(32px, 6vw, 56px); font-weight: 500; line-height: .95; margin: 12px 0; }
+    .lede { color: var(--muted); max-width: 36ch; font-size: 18px; }
+    .btn { display: inline-block; margin-top: 18px; background: var(--accent); color: #12140c; padding: 12px 16px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+    #ah-bubble { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 58px; height: 58px; border-radius: 50%;
+      background: var(--accent); color: #12140c; border: 0; cursor: pointer; font-weight: 800; font-size: 13px; }
+    #ah-panel { display: none; position: fixed; right: 18px; bottom: 86px; z-index: 50; width: min(360px, calc(100vw - 24px)); height: 500px;
+      background: #12140c; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; flex-direction: column; }
+    #ah-panel.open { display: flex; }
+    #ah-head { padding: 12px 14px; background: #1b1e12; border-bottom: 1px solid var(--line); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    #ah-head strong { color: var(--accent); }
+    #ah-log { flex: 1; overflow: auto; padding: 12px; font-size: 14px; }
+    .ah-row { margin: 8px 0; max-width: 85%; padding: 9px 11px; border-radius: 14px; }
+    .ah-bot { background: #23251b; }
+    .ah-user { background: var(--accent); color: #12140c; margin-left: auto; }
+    #ah-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid var(--line); }
+    #ah-form input { flex: 1; background: #1b1e12; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 10px 12px; }
+    #ah-form button { background: var(--accent); color: #12140c; border: 0; border-radius: 999px; padding: 10px 12px; font-weight: 700; }
+    #ah-ticket { display: none; margin: 10px; padding: 10px; border: 1px dashed var(--accent); border-radius: 12px; font-size: 12px; color: var(--accent); white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url" id="urlbar"></div></div>
+  <p class="note">Mock only — <strong>not</strong> their live site. This is how the Afterhours bubble would sit on a page like theirs. Tap <strong>CHAT</strong>.</p>
+  <div class="site">
+    <div class="brand" id="brand"></div>
+    <h1 id="headline"></h1>
+    <p class="lede" id="lede"></p>
+    <a class="btn" href="#">Schedule service</a>
+  </div>
+  <button id="ah-bubble" type="button">CHAT</button>
+  <div id="ah-panel">
+    <div id="ah-head"></div>
+    <div id="ah-log"></div>
+    <div id="ah-ticket"></div>
+    <form id="ah-form"><input id="ah-input" autocomplete="off" placeholder="Type as the homeowner…" /><button type="submit">Send</button></form>
+  </div>
+  <script>
+    const COS = {
+      mannys: { name: "Manny’s Air", city: "Mesa", area: "Mesa, Gilbert, Chandler", zip: "85201", domain: "mannysair.com" },
+      azcpg: { name: "The Cooling & Plumbing Co", city: "Mesa", area: "East Valley", zip: "85201", domain: "azcpg.com" },
+      idesign: { name: "Intelligent Design AC", city: "Tucson", area: "Tucson metro", zip: "85701", domain: "idesignac.com" },
+      ultra: { name: "Ultra Air", city: "Tucson", area: "Tucson", zip: "85701", domain: "ultraairaz.com" },
+      serveway: { name: "Serveway", city: "Dallas", area: "Dallas–Fort Worth", zip: "75201", domain: "servewayhvac.com" },
+      airtemp: { name: "Airtemp AC and Heating", city: "Dallas", area: "Dallas", zip: "75201", domain: "airtempdallas.com" },
+      greenleaf: { name: "Green Leaf Air", city: "Dallas", area: "DFW", zip: "75201", domain: "greenleafair.com" },
+      rescue: { name: "Rescue Air", city: "Dallas", area: "Dallas", zip: "75201", domain: "rescueairtx.com" },
+      sala: { name: "Sala Air Conditioning", city: "Dallas", area: "Dallas", zip: "75201", domain: "salaair.com" },
+      abacus: { name: "Abacus Plumbing AC Electrical", city: "Houston", area: "Houston", zip: "77002", domain: "abacusplumbing.net" },
+      gotflow: { name: "GotFlow", city: "Houston", area: "Houston", zip: "77002", domain: "gotflowservices.com" },
+      strong: { name: "Texas Strong Mechanical", city: "Houston", area: "Houston", zip: "77002", domain: "texasstrongmechanical.com" },
+      marcos: { name: "Marcos AC & Heating", city: "Houston", area: "Houston", zip: "77002", domain: "marcosac.com" },
+      aircheck: { name: "Air Check Mechanical", city: "Houston", area: "Houston", zip: "77002", domain: "aircheckms.com" },
+      heights: { name: "Heights A/C & Heating", city: "Houston", area: "Houston Heights", zip: "77008", domain: "heightsacandheating.com" },
+      deg75: { name: "75 Degree AC", city: "Houston", area: "Houston", zip: "77002", domain: "75degreeac.com" },
+      brown: { name: "Brown Air Conditioning", city: "Houston", area: "Houston", zip: "77002", domain: "brownairandheat.com" },
+      nicks: { name: "Nick’s Plumbing & AC", city: "Houston", area: "Houston", zip: "77002", domain: "nicksplumbing.com" },
+      sunstate: { name: "Sunstate Mechanical", city: "Tampa", area: "Tampa Bay", zip: "33602", domain: "hvacrepairtampa.com" },
+      calrene: { name: "Calrene Air Conditioning", city: "Tampa", area: "Tampa", zip: "33602", domain: "calreneac.com" }
+    };
+    const q = new URLSearchParams(location.search).get("id") || "mannys";
+    const c = COS[q] || COS.mannys;
+    document.title = "Mock — " + c.name;
+    document.getElementById("urlbar").textContent = "https://" + c.domain + "   (mock)";
+    document.getElementById("brand").textContent = c.name + " · " + c.city;
+    document.getElementById("headline").textContent = "AC repair in " + c.city + ". Still closed at 11pm — unless this chat is on.";
+    document.getElementById("lede").textContent = "This is a preview of Afterhours on a page like " + c.domain + ". Not their real website.";
+    document.getElementById("ah-head").innerHTML = "After hours · <strong>" + c.name + "</strong> · Sat 11:14pm closed";
+
+    const log = document.getElementById("ah-log");
+    const panel = document.getElementById("ah-panel");
+    const ticket = document.getElementById("ah-ticket");
+    const state = { step: "issue", issue: "", zip: "", when: "", name: "", phone: "" };
+    function add(who, text) {
+      const d = document.createElement("div");
+      d.className = "ah-row " + (who === "bot" ? "ah-bot" : "ah-user");
+      d.textContent = text;
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+    }
+    function bot(t) { setTimeout(() => add("bot", t), 350); }
+    document.getElementById("ah-bubble").onclick = () => {
+      panel.classList.toggle("open");
+      if (panel.classList.contains("open") && log.childElementCount === 0) {
+        bot("Hey — " + c.name + " is closed, but I can still check if we can take this in " + c.area + " and get you on the calendar. What’s going on with the AC?");
+      }
+    };
+    document.getElementById("ah-form").onsubmit = (e) => {
+      e.preventDefault();
+      const input = document.getElementById("ah-input");
+      const t = input.value.trim();
+      if (!t) return;
+      add("user", t);
+      input.value = "";
+      reply(t);
+    };
+    function reply(t) {
+      if (/(gas leak|carbon monoxide|fire)/i.test(t)) { bot("If you smell gas or CO, call 911. I can’t handle that."); return; }
+      if (state.step === "issue") { state.issue = t; state.step = "zip"; bot("Got it. What zip? We run " + c.area + "."); return; }
+      if (state.step === "zip") {
+        state.zip = (t.match(/\b\d{5}\b/) || [c.zip])[0];
+        state.step = "when";
+        bot("That’s in area for this mock. Tomorrow 8:30 or 11:00?");
+        return;
+      }
+      if (state.step === "when") { state.when = t; state.step = "name"; bot("Name for the ticket?"); return; }
+      if (state.step === "name") { state.name = t; state.step = "phone"; bot("Mobile number?"); return; }
+      if (state.step === "phone") {
+        state.phone = t; state.step = "done";
+        bot("Booked. " + c.name + " would text " + state.name + " in the morning. This is a mock — no real truck is coming.");
+        ticket.style.display = "block";
+        ticket.textContent = "LEAD TICKET (what " + c.name + " would get)\nName: " + state.name + "\nPhone: " + state.phone + "\nZip: " + state.zip + "\nIssue: " + state.issue + "\nSlot: " + state.when;
+      }
+    }
+  </script>
+</body>
+</html>

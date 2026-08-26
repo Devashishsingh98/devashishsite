@@ -3,298 +3,489 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Afterhours — the closer that works after you go home</title>
-  <meta name="description" content="A 24/7 AI closer on your site. It answers the usual questions, qualifies the job, and puts it on your calendar. Live in 7 days." />
-  <link rel="canonical" href="https://devashish98.xyz/" />
-  <meta property="og:title" content="Afterhours — 24/7 site closer for service businesses" />
-  <meta property="og:description" content="Tap CHAT. Try zip 85016. $490 install, live in 7 days." />
-  <meta property="og:url" content="https://devashish98.xyz/" />
+  <title>Devashish Singh — full-stack + AI, 7-day sprints</title>
+  <meta name="description" content="I ship working web products in 7 days: Next.js / React, RAG, agents, dashboards. Fixed $1,500–$4,000. Live URL + repo. Hire on Upwork." />
+  <link rel="canonical" href="https://www.devashish98.xyz/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Devashish Singh — full-stack + AI, 7-day sprints" />
+  <meta property="og:description" content="Next.js, RAG, agents, internal tools. You get a live URL and the repo. $1,500–$4,000 on Upwork escrow." />
+  <meta property="og:url" content="https://www.devashish98.xyz/" />
+  <meta property="og:image" content="https://www.devashish98.xyz/assets/pdf-lens-workspace.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0e0d0b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,640;9..144,720&family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Devashish Singh",
+    "url": "https://www.devashish98.xyz/",
+    "jobTitle": "Full-stack and AI engineer",
+    "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+    "sameAs": [
+      "https://github.com/Devashishsingh98",
+      "https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a"
+    ]
+  }
+  </script>
   <style>
     :root {
-      --bg: #f4f7fb;
-      --paper: #ffffff;
-      --ink: #0f2744;
-      --muted: #4b5563;
-      --line: #e5e7eb;
-      --accent: #2563eb;
-      --accent-ink: #ffffff;
-      --navy: #0f2744;
+      --bg: #0e0d0b;
+      --paper: #171613;
+      --paper-2: #1f1c18;
+      --ink: #f3efe6;
+      --muted: #a39c90;
+      --line: #2c2923;
+      --brass: #e6b35a;
+      --brass-ink: #1a1408;
+      --mint: #8fd9b5;
+      --danger: #d4786a;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Sora, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.5;
+      line-height: 1.55;
+      font-size: 16px;
     }
     a { color: inherit; }
-    .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
-    header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 0 8px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
-    }
-    header span { color: #b91c1c; }
-    .nav a { color: var(--muted); text-decoration: none; margin-left: 22px; }
-    .hero { padding: 48px 0 24px; }
+    img { max-width: 100%; display: block; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
     .kicker {
-      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: #2563eb; margin: 0 0 14px; font-weight: 700;
+      margin: 0 0 12px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass);
+      font-weight: 600;
     }
-    h1 {
-      font-size: clamp(36px, 6vw, 56px);
-      line-height: 1.1; letter-spacing: -0.02em;
-      font-weight: 800; margin: 0 0 18px; max-width: 16ch; color: var(--navy);
+    h1, h2, h3 { font-family: Fraunces, Georgia, serif; letter-spacing: -0.03em; font-weight: 640; }
+    h1 { font-size: clamp(44px, 8vw, 84px); line-height: 0.95; margin: 0 0 22px; }
+    h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; margin: 0 0 12px; }
+    h3 { font-size: 26px; line-height: 1.15; margin: 0 0 10px; }
+    p { margin: 0 0 14px; }
+    .muted { color: var(--muted); }
+    header.nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(14,13,11,.78);
+      border-bottom: 1px solid var(--line);
     }
-    .lede { font-size: 18px; color: var(--muted); max-width: 42ch; margin: 0 0 28px; }
-    .row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .nav-in {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; gap: 16px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; font-weight: 600; font-size: 14px;
+    }
+    .brand-name { white-space: nowrap; }
+    .mark {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--brass); color: var(--brass-ink);
+      display: grid; place-items: center;
+      font-family: Fraunces, Georgia, serif; font-weight: 720; font-size: 13px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 13px; color: var(--muted); }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
     .btn {
-      display: inline-block; text-decoration: none;
-      font-size: 14px; letter-spacing: 0.03em; text-transform: uppercase;
-      padding: 14px 18px; border-radius: 6px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      text-decoration: none; border-radius: 999px;
+      padding: 12px 18px; font-size: 13px; font-weight: 600;
+      border: 1px solid transparent; transition: transform .15s ease, background .15s ease;
     }
-    .btn-primary { background: #2563eb; color: #fff; }
-    .btn-ghost { border: 1px solid var(--line); color: var(--navy); background: #fff; }
-    .grid {
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px;
-      padding: 12px 0 56px;
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--brass); color: var(--brass-ink); }
+    .btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+    .hero { padding: 72px 0 28px; }
+    .lede { font-size: 18px; color: var(--muted); max-width: 46ch; margin-bottom: 28px; }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .meta-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      border-radius: 14px; overflow: hidden; margin: 48px 0 0;
     }
+    .meta-bar div { background: var(--paper); padding: 18px 16px; }
+    .meta-bar strong { display: block; font-size: 18px; font-family: Fraunces, Georgia, serif; }
+    .meta-bar span { color: var(--muted); font-size: 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .chip {
+      border: 1px solid var(--line); color: var(--muted);
+      border-radius: 999px; padding: 6px 10px; font-size: 12px;
+    }
+    section { padding: 72px 0; }
+    .section-head { max-width: 56ch; margin-bottom: 28px; }
+    .feature {
+      display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px;
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 18px; overflow: hidden; margin-bottom: 18px;
+    }
+    .feature-copy { padding: 28px; }
+    .shot {
+      min-height: 280px;
+      background: #111 url("assets/pdf-lens-home.jpg") center top / cover no-repeat;
+      border-left: 1px solid var(--line);
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .card {
       background: var(--paper); border: 1px solid var(--line);
-      border-radius: 10px; padding: 22px; box-shadow: 0 1px 2px rgba(15,39,68,.04);
+      border-radius: 16px; padding: 22px;
     }
-    .chat { font-size: 14px; }
-    .bubble { max-width: 85%; padding: 10px 12px; border-radius: 12px; margin: 10px 0; }
-    .them { background: #f3f4f6; }
-    .us { background: #2563eb; color: #fff; margin-left: auto; }
-    .meta { color: var(--muted); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
-    h2 { font-size: 28px; line-height: 1.2; margin: 0 0 12px; color: var(--navy); }
-    ol { padding-left: 18px; color: var(--muted); }
-    .split { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; padding-bottom: 56px; }
-    .price { font-size: 40px; margin: 8px 0; color: var(--navy); font-weight: 800; }
-    .fine { color: var(--muted); font-size: 15px; }
+    .card:hover { border-color: #4a4338; }
+    .why {
+      font-size: 14px; color: var(--ink);
+      border-left: 2px solid var(--brass);
+      padding-left: 12px; margin: 14px 0;
+    }
+    .stack { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 18px; padding: 0; list-style: none; }
+    .stack li {
+      font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
+      color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px;
+    }
+    .links { display: flex; gap: 14px; font-size: 13px; font-weight: 600; }
+    .links a { color: var(--brass); text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+    .live { color: var(--mint); font-size: 12px; font-weight: 600; }
+    .gh-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .gh-card {
+      background: var(--paper-2); border: 1px solid var(--line);
+      border-radius: 14px; padding: 16px; text-decoration: none; display: block;
+      min-height: 150px;
+    }
+    .gh-card:hover { border-color: #4a4338; }
+    .gh-card h3 { font-size: 18px; margin-bottom: 6px; }
+    .gh-card p { color: var(--muted); font-size: 13px; }
+    .gh-meta { display: flex; gap: 12px; color: var(--muted); font-size: 12px; margin-top: 12px; }
+    .packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .price { font-family: Fraunces, Georgia, serif; font-size: 40px; margin: 8px 0 4px; }
+    .price span { font-size: 16px; color: var(--muted); font-family: Sora, sans-serif; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .good li, .skip li { margin: 8px 0; color: var(--muted); }
+    .good li::marker { color: var(--mint); }
+    .skip li::marker { color: var(--danger); }
+    .cta {
+      background:
+        radial-gradient(800px 240px at 10% 0%, rgba(230,179,90,.12), transparent 50%),
+        var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px;
+    }
     footer {
-      border-top: 1px solid var(--line); padding: 28px 0 48px;
-      font-size: 13px; color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding: 28px 0 48px;
+      color: var(--muted); font-size: 13px;
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
-    @media (max-width: 800px) {
-      .grid, .split { grid-template-columns: 1fr; }
-      .nav { display: none; }
+    .status { color: var(--muted); font-size: 13px; min-height: 1.4em; }
+    .hire-dock {
+      display: none; position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 30;
     }
-    #ah-bubble {
-      position: fixed; right: 18px; bottom: 18px; z-index: 50;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: #2563eb; color: #fff;
-      border: 0; cursor: pointer; font-weight: 800;
-      font-size: 12px;
-      box-shadow: 0 8px 20px rgba(37,99,235,.35);
+    @media (max-width: 860px) {
+      .nav-links .hide { display: none; }
+      .feature, .grid, .packages, .split, .gh-grid, .meta-bar { grid-template-columns: 1fr; }
+      .shot { min-height: 220px; border-left: 0; border-top: 1px solid var(--line); }
+      .hero { padding-top: 40px; }
+      .brand-name { display: none; }
+      .hire-dock { display: block; }
+      .hire-dock .btn { width: 100%; box-shadow: var(--shadow); }
+      footer { padding-bottom: 88px; }
     }
-    #ah-panel {
-      display: none; position: fixed; right: 18px; bottom: 84px; z-index: 50;
-      width: min(360px, calc(100vw - 24px)); height: 500px;
-      background: #fff; border: 1px solid #d1d5db; border-radius: 12px;
-      overflow: hidden; flex-direction: column;
-      box-shadow: 0 12px 40px rgba(0,0,0,.15);
-    }
-    #ah-panel.open { display: flex; }
-    #ah-head {
-      padding: 12px 14px; background: #0f2744; color: #fff;
-      font-size: 12px; letter-spacing: 0.04em;
-    }
-    #ah-head strong { color: #93c5fd; }
-    #ah-log { flex: 1; overflow: auto; padding: 12px; font-size: 14px; background: #f8fafc; }
-    .ah-row { margin: 8px 0; max-width: 85%; padding: 9px 11px; border-radius: 12px; }
-    .ah-bot { background: #fff; border: 1px solid #e5e7eb; }
-    .ah-user { background: #2563eb; color: #fff; margin-left: auto; }
-    #ah-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #e5e7eb; background: #fff; }
-    #ah-form input {
-      flex: 1; background: #fff; color: var(--ink); border: 1px solid #d1d5db;
-      border-radius: 8px; padding: 10px 12px; font: inherit;
-    }
-    #ah-form button {
-      background: #2563eb; color: #fff; border: 0;
-      border-radius: 8px; padding: 10px 12px; font-weight: 700; cursor: pointer;
-    }
-    #ah-ticket {
-      display: none; margin: 10px; padding: 10px; border: 1px dashed #2563eb;
-      border-radius: 8px; font-size: 12px; color: #1e3a8a;
-      white-space: pre-wrap; background: #eff6ff;
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn:hover { transform: none; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <strong>Afterhours <span>●</span></strong>
-      <nav class="nav">
-        <a href="#how">How</a>
-        <a href="#price">Price</a>
-        <a href="#book">Book</a>
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="/">
+        <span class="mark">DS</span>
+        <span class="brand-name">Devashish Singh</span>
+      </a>
+      <nav class="nav-links">
+        <a class="hide" href="#work">Work</a>
+        <a class="hide" href="#offer">Offer</a>
+        <a href="https://github.com/Devashishsingh98">GitHub</a>
+        <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Hire on Upwork</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <section class="hero">
-      <p class="kicker">For service businesses that already pay for leads</p>
-      <h1>Your site should still close at 11pm.</h1>
-      <p class="lede">We install a 24/7 AI closer that answers the usual questions, qualifies the job, and puts it on your calendar. Live in 7 days.</p>
+  <main>
+    <section class="hero wrap">
+      <p class="kicker">Available · 7-day product sprints</p>
+      <h1>Ship the product.<br />Keep the repo.</h1>
+      <p class="lede">I take Upwork jobs that need a working app — Next.js / React, RAG over your files, agents, dashboards — and hand you a live URL. Fixed price. 50% escrow. No decks.</p>
       <div class="row">
-        <a class="btn btn-primary" href="#book">Book a 15-min look</a>
-        <a class="btn btn-ghost" href="#demo">Watch a 90-sec demo</a>
+        <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Start on Upwork</a>
+        <a class="btn btn-ghost" href="#work">See the work</a>
+      </div>
+      <div class="chips" aria-label="Stack">
+        <span class="chip">Next.js</span>
+        <span class="chip">React</span>
+        <span class="chip">Node</span>
+        <span class="chip">Python</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">RAG</span>
+        <span class="chip">Agents</span>
+        <span class="chip">Vercel</span>
+      </div>
+      <div class="meta-bar">
+        <div><strong>7 days</strong><span>First working slice</span></div>
+        <div><strong>$1.5k–$4k</strong><span>Fixed, 50% escrow</span></div>
+        <div><strong>India · IST</strong><span>US morning overlap</span></div>
+        <div><strong id="repo-count">27 repos</strong><span>Selected work below</span></div>
       </div>
     </section>
 
-    <section class="grid" id="demo">
-      <div class="card chat">
-        <p class="meta">Demo · Saturday 11:14pm</p>
-        <div class="bubble them">hey do you guys do AC repair in Tempe tonight or tomorrow?</div>
-        <div class="bubble us">Yes — Tempe is in area. Tonight is emergency-only after 9. Tomorrow we have 8:30 and 11:00. What’s going on with the unit?</div>
-        <div class="bubble them">it’s blowing warm, house is 82. not dying, just miserable.</div>
-        <div class="bubble us">That’s a tomorrow job, not a 2am truck. I can hold 8:30. Name and mobile and I’ll put it on the board.</div>
-        <div class="bubble them">Chris, 480-555-0142</div>
-        <div class="bubble us">Booked. You’ll get a text from the office in the morning. If it starts tripping the breaker or smelling hot, call the emergency line and say Afterhours sent you.</div>
+    <section id="work" class="wrap">
+      <div class="section-head">
+        <p class="kicker">Selected work</p>
+        <h2>Projects that map to the jobs I want.</h2>
+        <p class="muted">Pulled from <a href="https://github.com/Devashishsingh98">github.com/Devashishsingh98</a>. Student toys and forks stay off this page. Each card says which Upwork ticket it proves.</p>
       </div>
-      <div class="card" id="how">
-        <p class="kicker">How it works</p>
-        <h2>7 days. Your site. Their calendar.</h2>
-        <ol>
-          <li>30-min call: services, area, prices you’ll actually say, booking rules.</li>
-          <li>We train the closer on your real FAQs — not generic chatbot sludge.</li>
-          <li>A small widget on the site you already have. No redesign.</li>
-          <li>Leads and bookings hit your email/calendar. We watch transcripts for 14 days.</li>
-        </ol>
-        <p class="fine">It will never pretend to be a licensed tech. It will never invent a firm quote. If they need a human, it hands off.</p>
+
+      <article class="feature">
+        <div class="feature-copy">
+          <p class="kicker">Flagship · RAG · PDF · chat</p>
+          <h3>PDF Lens</h3>
+          <p class="muted">An AI reading workspace. Highlight a sentence in a paper or a model reply — Explain, Teach, Example, Code, Go Deeper. Nested answers stay open so you don’t lose the thread. Chrome extension optional.</p>
+          <p class="why">This is the proof I can put chat-on-your-docs in a real product, not a ChatGPT skin.</p>
+          <ul class="stack">
+            <li>React</li><li>Vite</li><li>Express</li><li>OpenAI / OpenRouter</li><li>pdf.js</li><li>SQLite</li><li>local embeddings</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Devashishsingh98/pdf-lens">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="shot" role="img" aria-label="PDF Lens workspace: a PDF page with highlight actions and paper chat"></div>
+      </article>
+
+      <div class="grid">
+        <article class="card">
+          <p class="kicker">Automation · scrape · match</p>
+          <h3>Job notification extractor</h3>
+          <p class="muted">Telegram channels in. Structured job cards out. Regex first, Gemini when the post is messy. Eligibility by age, category, education, state. Celery every 15 minutes. React admin.</p>
+          <p class="why">The automation job, end to end: ingest, LLM parse, rules, queue, notify.</p>
+          <ul class="stack">
+            <li>FastAPI</li><li>Celery</li><li>Redis</li><li>Supabase</li><li>Telethon</li><li>Gemini</li><li>React / TS</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Devashishsingh98/jobNotificationExtractor">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Streaming AI · documents</p>
+          <h3>StudyHelper</h3>
+          <p class="muted">Exam study workspace. Highlight a passage, pick a lens (legal, socio-economic, PYQ), get a streamed insight. Follow-ups stay in the same panel. OCR when the page is a scan.</p>
+          <p class="why">Streaming AI over a document with a real UI — the same shape as an internal research tool.</p>
+          <ul class="stack">
+            <li>React</li><li>FastAPI</li><li>SSE</li><li>Tesseract</li><li>Zustand</li><li>pdf.js</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Devashishsingh98/studyhelper">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Shipped widget · lead chat</p>
+          <h3>Afterhours closer</h3>
+          <p class="muted">A site chat that asks area and timing, takes a name and phone, and writes a lead ticket. Retired as a business. Kept as a clickable demo.</p>
+          <p class="why">You can tap it. That’s the difference between a proposal and a product.</p>
+          <ul class="stack">
+            <li>Vanilla JS</li><li>qualification flow</li><li>lead ticket</li>
+          </ul>
+          <div class="links">
+            <a href="/afterhours">Live demo ↗</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Storefront · Node</p>
+          <h3>Commerce + realtime chat</h3>
+          <p class="muted">An Express shop with sessions, cart, and uploads. Separately: a Django Channels room on Redis/WebSockets. Older, still honest backend work.</p>
+          <p class="why">Useful when the ticket is “cart + auth” or “live chat,” not another landing page.</p>
+          <ul class="stack">
+            <li>Express</li><li>sessions</li><li>Django</li><li>Channels</li><li>Redis</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Devashishsingh98/ecommerce">Ecommerce ↗</a>
+            <a href="https://github.com/Devashishsingh98/RealTimeChatRoom">Chat room ↗</a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="split" id="price">
-      <div class="card">
-        <p class="kicker">Install</p>
-        <p class="price">$490</p>
-        <p class="fine">Once. Widget, training, calendar, 14-day tuning. 50% to start.</p>
+    <section class="wrap" id="github">
+      <div class="section-head">
+        <p class="kicker">From GitHub</p>
+        <h2>More public repos, filtered.</h2>
+        <p class="muted status" id="gh-status">Loading public repositories…</p>
       </div>
-      <div class="card">
-        <p class="kicker">Retainer</p>
-        <p class="price">$149<span class="fine">/mo</span></p>
-        <p class="fine">Hosting, monitoring, prompt fixes, weekly recap.</p>
+      <div class="gh-grid" id="gh-grid"></div>
+    </section>
+
+    <section id="offer" class="wrap">
+      <div class="section-head">
+        <p class="kicker">Offer</p>
+        <h2>One job: a working slice in 7 days.</h2>
+        <p class="muted">50% on Upwork escrow to start. You get the URL and the repository. Hourly only if you force it: $60–$80, so $15/hr tickets bounce off.</p>
       </div>
-      <div class="card">
-        <p class="kicker">Guarantee</p>
-        <p class="price" style="font-size:28px;line-height:1.15;">One qualified booking in 14 days or we keep working at no extra labor.</p>
-        <p class="fine">You need existing traffic or ads. We don’t manufacture demand.</p>
+      <div class="packages">
+        <article class="card">
+          <p class="kicker">Slice</p>
+          <p class="price">$1,500</p>
+          <p class="muted">One feature on an existing app, or a thin MVP. Deployed.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Sprint</p>
+          <p class="price">$2,500</p>
+          <p class="muted">Auth + one AI workflow (RAG, agent, or chat on your data) + deploy.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Product</p>
+          <p class="price">$4,000</p>
+          <p class="muted">Small SaaS: users, payments or admin, and the AI core.</p>
+        </article>
+      </div>
+
+      <div class="split" style="margin-top:16px;">
+        <article class="card">
+          <h3>Good fit</h3>
+          <ul class="good">
+            <li>Next.js / React MVP</li>
+            <li>RAG chatbot over your docs or PDFs</li>
+            <li>AI agent or site chat on your data</li>
+            <li>Internal dashboard / admin</li>
+            <li>Scrape → parse → notify pipelines</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>I will pass</h3>
+          <ul class="skip">
+            <li>ManyChat, GHL, Zapier-only clicking</li>
+            <li>$100 “any HTML task”</li>
+            <li>Unpaid trials or “build me Uber”</li>
+            <li>6-month hire-an-employee posts</li>
+            <li>Logo-and-hope landing pages</li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <section class="card" id="book" style="margin-bottom:56px;">
-      <p class="kicker">Start</p>
-      <h2>If after-hours inquiries already convert, you don’t need this.</h2>
-      <p class="fine">If they sit until morning while the next ad gets the job, book 15 minutes. Bring a site URL and what a new job is worth.</p>
-      <p style="margin-top:22px;">
-        <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Start on Upwork (escrow)</a>
-      </p>
+    <section class="wrap" id="hire">
+      <div class="cta">
+        <p class="kicker">Hire</p>
+        <h2>Open the job. Send the stack.</h2>
+        <p class="muted" style="max-width:46ch;">I’ll reply in five lines with what ships in week 1. Prefer fixed price. India-based, available 30+ hrs, overlap with US mornings.</p>
+        <div class="row" style="margin-top:22px;">
+          <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Hire on Upwork</a>
+          <a class="btn btn-ghost" href="https://github.com/Devashishsingh98">GitHub</a>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer>
-      Afterhours · Devashish Singh · not affiliated with xAI.
-      Tap the blue CHAT — play a customer at 11pm. Zip 85016.
-    </footer>
+  <footer class="wrap">
+    <div>Devashish Singh · full-stack + AI · not affiliated with xAI or Upwork.</div>
+    <div>https://www.devashish98.xyz</div>
+  </footer>
+
+  <div class="hire-dock">
+    <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Hire on Upwork</a>
   </div>
 
-  <button id="ah-bubble" type="button" aria-label="Open demo chat">CHAT</button>
-  <div id="ah-panel">
-    <div id="ah-head">Demo closer · <strong>Desert Coil HVAC</strong> · Sat 11:14pm closed</div>
-    <div id="ah-log"></div>
-    <div id="ah-ticket"></div>
-    <form id="ah-form">
-      <input id="ah-input" autocomplete="off" placeholder="Type as the homeowner…" />
-      <button type="submit">Send</button>
-    </form>
-  </div>
   <script>
-    const log = document.getElementById("ah-log");
-    const panel = document.getElementById("ah-panel");
-    const ticket = document.getElementById("ah-ticket");
-    const state = { step: "issue", issue: "", zip: "", when: "", name: "", phone: "" };
-    const zips = ["85001","85003","85004","85006","85008","85012","85014","85016","85018","85020","85021","85022","85023","85024","85027","85029","85032","85044","85048","85201","85202","85224","85225","85226","85251","85254","85255","85281","85282","85283","85284","85301","85302","85308","85331","85339","85353","85383"];
+    const FEATURED = new Set([
+      "pdf-lens", "jobNotificationExtractor", "studyhelper",
+      "ecommerce", "RealTimeChatRoom", "devashishsite"
+    ]);
+    const SKIP = new Set([
+      "skills", "scrapy", "contributor_covenant", "codingblocks.online.projectx",
+      "yourfirstpr.github.io", "candy", "stopwatch", "Guess-The-color",
+      "scoreregister", "project", "Devashishsingh98", "TODO", "Attendance",
+      "animo", "TextUtils", "Todo-List", "moviecompare", "messageshare",
+      "Blog_site"
+    ]);
+    const COPY = {
+      weatherapi: "Full shopping SPA: catalog, search, cart, checkout, wishlist. (Repo name is leftover.)",
+      imdbdata: "Scrapy crawl of IMDb-style listings — useful when the ticket is a scraper.",
+    };
 
-    function add(who, text) {
-      const d = document.createElement("div");
-      d.className = "ah-row " + (who === "bot" ? "ah-bot" : "ah-user");
-      d.textContent = text;
-      log.appendChild(d);
-      log.scrollTop = log.scrollHeight;
+    const status = document.getElementById("gh-status");
+    const grid = document.getElementById("gh-grid");
+
+    function score(repo) {
+      let n = 0;
+      if (repo.description) n += 2;
+      if (repo.size > 40) n += 2;
+      if (["JavaScript", "TypeScript", "Python"].includes(repo.language)) n += 2;
+      const year = Number((repo.pushed_at || "").slice(0, 4));
+      if (year >= 2026) n += 4;
+      else if (year >= 2022) n += 2;
+      if (repo.homepage) n += 1;
+      return n;
     }
-    function bot(t) { setTimeout(() => add("bot", t), 350); }
 
-    document.getElementById("ah-bubble").onclick = () => {
-      panel.classList.toggle("open");
-      if (panel.classList.contains("open") && log.childElementCount === 0) {
-        bot("Hey — Desert Coil is closed, but I can still check if we can take this and get you on the calendar. What’s going on with the AC or heat?");
-      }
-    };
-
-    document.getElementById("ah-form").onsubmit = (e) => {
-      e.preventDefault();
-      const input = document.getElementById("ah-input");
-      const t = input.value.trim();
-      if (!t) return;
-      add("user", t);
-      input.value = "";
-      reply(t);
-    };
-
-    function reply(t) {
-      const low = t.toLowerCase();
-      if (/(lawyer|legal|medical|gas leak|carbon monoxide|fire)/.test(low)) {
-        bot("If you smell gas or CO, hang up this chat and call 911 / the gas company. I can’t handle that.");
-        return;
-      }
-      if (state.step === "issue") {
-        state.issue = t;
-        state.step = "zip";
-        bot("Got it. What zip code? We run Phoenix, Tempe, Mesa, Scottsdale, Glendale, Chandler.");
-        return;
-      }
-      if (state.step === "zip") {
-        const zip = (t.match(/\b\d{5}\b/) || [t.replace(/\D/g,"").slice(0,5)])[0];
-        state.zip = zip;
-        if (zips.includes(zip) || /phoenix|tempe|mesa|scottsdale|glendale|chandler|peoria/i.test(t)) {
-          state.step = "when";
-          bot("That’s in area. Tonight is emergency-only after 9 (no cooling at all, or a breaker/smell). Otherwise we have tomorrow 8:30 or 11:00. Which do you want?");
-        } else {
-          bot("We probably don’t cover that zip. I can still take your name and have the office confirm in the morning — or you can try a closer company. Want me to note it anyway?");
-          state.step = "when";
+    fetch("https://api.github.com/users/Devashishsingh98")
+      .then((r) => r.ok ? r.json() : null)
+      .then((user) => {
+        if (user && user.public_repos) {
+          document.getElementById("repo-count").textContent = user.public_repos + " repos";
         }
-        return;
-      }
-      if (state.step === "when") {
-        state.when = t;
-        state.step = "name";
-        bot("Name for the ticket?");
-        return;
-      }
-      if (state.step === "name") {
-        state.name = t;
-        state.step = "phone";
-        bot("Mobile number? Office texts this in the morning.");
-        return;
-      }
-      if (state.step === "phone") {
-        state.phone = t;
-        state.step = "done";
-        bot("Booked. Desert Coil will text " + state.name + " in the morning about " + state.when + ". If it starts tripping a breaker or smelling hot, call the emergency line and say Afterhours sent you.");
-        ticket.style.display = "block";
-        ticket.textContent =
-          "LEAD TICKET (what the owner gets by email)\n" +
-          "Name: " + state.name + "\n" +
-          "Phone: " + state.phone + "\n" +
-          "Zip: " + state.zip + "\n" +
-          "Issue: " + state.issue + "\n" +
-          "Slot: " + state.when + "\n" +
-          "Source: website chat · Sat 11:14pm";
-        return;
-      }
-      bot("You’re on the board. If you need to change the slot, say so.");
-    }
+      })
+      .catch(() => {});
+
+    fetch("https://api.github.com/users/Devashishsingh98/repos?per_page=100&sort=updated")
+      .then((r) => {
+        if (!r.ok) throw new Error("GitHub " + r.status);
+        return r.json();
+      })
+      .then((repos) => {
+        const picked = repos
+          .filter((repo) => {
+            if (repo.fork || FEATURED.has(repo.name) || SKIP.has(repo.name)) return false;
+            if (repo.size < 30) return false;
+            const year = Number((repo.pushed_at || "").slice(0, 4));
+            return year >= 2022 && score(repo) >= 5;
+          })
+          .sort((a, b) => score(b) - score(a) || new Date(b.pushed_at) - new Date(a.pushed_at))
+          .slice(0, 3);
+
+        if (!picked.length) {
+          document.getElementById("github").hidden = true;
+          return;
+        }
+        status.textContent = "Live from GitHub · forks and classroom toys omitted.";
+        grid.innerHTML = picked.map((repo) => {
+          const blurb = COPY[repo.name] || repo.description || "Public repository.";
+          const pushed = (repo.pushed_at || "").slice(0, 10);
+          return (
+            '<a class="gh-card" href="' + repo.html_url + '">' +
+              '<h3>' + repo.name + '</h3>' +
+              '<p>' + blurb + '</p>' +
+              '<div class="gh-meta">' +
+                '<span>' + (repo.language || "repo") + '</span>' +
+                '<span>' + pushed + '</span>' +
+              '</div>' +
+            '</a>'
+          );
+        }).join("");
+      })
+      .catch(() => {
+        status.textContent = "GitHub is quiet right now. The featured work above is enough.";
+      });
   </script>
 </body>
 </html>

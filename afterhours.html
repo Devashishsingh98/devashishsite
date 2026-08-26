@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afterhours — lead-qualifying chat (case study)</title>
+  <meta name="description" content="Shipped demo: a site chat that qualifies a job and writes a lead ticket. Case study on Devashish Singh’s Upwork profile." />
+  <link rel="canonical" href="https://www.devashish98.xyz/afterhours" />
+  <meta property="og:title" content="Afterhours — lead-qualifying chat (case study)" />
+  <meta property="og:description" content="Tap CHAT. Try zip 85016. A shipped widget, not a pitch deck." />
+  <meta property="og:url" content="https://www.devashish98.xyz/afterhours" />
+  <meta name="robots" content="noindex" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --ink: #0f2744;
+      --muted: #4b5563;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-ink: #ffffff;
+      --navy: #0f2744;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 0 8px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    header span { color: #b91c1c; }
+    .nav a { color: var(--muted); text-decoration: none; margin-left: 22px; }
+    .hero { padding: 48px 0 24px; }
+    .kicker {
+      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #2563eb; margin: 0 0 14px; font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.1; letter-spacing: -0.02em;
+      font-weight: 800; margin: 0 0 18px; max-width: 16ch; color: var(--navy);
+    }
+    .lede { font-size: 18px; color: var(--muted); max-width: 42ch; margin: 0 0 28px; }
+    .row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; text-decoration: none;
+      font-size: 14px; letter-spacing: 0.03em; text-transform: uppercase;
+      padding: 14px 18px; border-radius: 6px; font-weight: 700;
+    }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-ghost { border: 1px solid var(--line); color: var(--navy); background: #fff; }
+    .grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px;
+      padding: 12px 0 56px;
+    }
+    .card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 10px; padding: 22px; box-shadow: 0 1px 2px rgba(15,39,68,.04);
+    }
+    .chat { font-size: 14px; }
+    .bubble { max-width: 85%; padding: 10px 12px; border-radius: 12px; margin: 10px 0; }
+    .them { background: #f3f4f6; }
+    .us { background: #2563eb; color: #fff; margin-left: auto; }
+    .meta { color: var(--muted); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    h2 { font-size: 28px; line-height: 1.2; margin: 0 0 12px; color: var(--navy); }
+    ol { padding-left: 18px; color: var(--muted); }
+    .split { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; padding-bottom: 56px; }
+    .price { font-size: 40px; margin: 8px 0; color: var(--navy); font-weight: 800; }
+    .fine { color: var(--muted); font-size: 15px; }
+    footer {
+      border-top: 1px solid var(--line); padding: 28px 0 48px;
+      font-size: 13px; color: var(--muted);
+    }
+    @media (max-width: 800px) {
+      .grid, .split { grid-template-columns: 1fr; }
+      .nav { display: none; }
+    }
+    #ah-bubble {
+      position: fixed; right: 18px; bottom: 18px; z-index: 50;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #2563eb; color: #fff;
+      border: 0; cursor: pointer; font-weight: 800;
+      font-size: 12px;
+      box-shadow: 0 8px 20px rgba(37,99,235,.35);
+    }
+    #ah-panel {
+      display: none; position: fixed; right: 18px; bottom: 84px; z-index: 50;
+      width: min(360px, calc(100vw - 24px)); height: 500px;
+      background: #fff; border: 1px solid #d1d5db; border-radius: 12px;
+      overflow: hidden; flex-direction: column;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    }
+    #ah-panel.open { display: flex; }
+    #ah-head {
+      padding: 12px 14px; background: #0f2744; color: #fff;
+      font-size: 12px; letter-spacing: 0.04em;
+    }
+    #ah-head strong { color: #93c5fd; }
+    #ah-log { flex: 1; overflow: auto; padding: 12px; font-size: 14px; background: #f8fafc; }
+    .ah-row { margin: 8px 0; max-width: 85%; padding: 9px 11px; border-radius: 12px; }
+    .ah-bot { background: #fff; border: 1px solid #e5e7eb; }
+    .ah-user { background: #2563eb; color: #fff; margin-left: auto; }
+    #ah-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #e5e7eb; background: #fff; }
+    #ah-form input {
+      flex: 1; background: #fff; color: var(--ink); border: 1px solid #d1d5db;
+      border-radius: 8px; padding: 10px 12px; font: inherit;
+    }
+    #ah-form button {
+      background: #2563eb; color: #fff; border: 0;
+      border-radius: 8px; padding: 10px 12px; font-weight: 700; cursor: pointer;
+    }
+    #ah-ticket {
+      display: none; margin: 10px; padding: 10px; border: 1px dashed #2563eb;
+      border-radius: 8px; font-size: 12px; color: #1e3a8a;
+      white-space: pre-wrap; background: #eff6ff;
+    }
+  </style>
+</head>
+<body>
+  <div style="background:#0e0d0b;color:#f3efe6;font:13px/1.4 Arial,Helvetica,sans-serif;padding:10px 18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+    <span>Case study · lead-qualifying chat widget</span>
+    <a href="/" style="color:#e6b35a;font-weight:700;text-decoration:none;">← Devashish Singh — profile</a>
+  </div>
+  <div class="wrap">
+    <header>
+      <strong>Afterhours <span>●</span></strong>
+      <nav class="nav">
+        <a href="#how">How</a>
+        <a href="#price">Price</a>
+        <a href="#book">Book</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <p class="kicker">For service businesses that already pay for leads</p>
+      <h1>Your site should still close at 11pm.</h1>
+      <p class="lede">We install a 24/7 AI closer that answers the usual questions, qualifies the job, and puts it on your calendar. Live in 7 days.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="#book">Book a 15-min look</a>
+        <a class="btn btn-ghost" href="#demo">Watch a 90-sec demo</a>
+      </div>
+    </section>
+
+    <section class="grid" id="demo">
+      <div class="card chat">
+        <p class="meta">Demo · Saturday 11:14pm</p>
+        <div class="bubble them">hey do you guys do AC repair in Tempe tonight or tomorrow?</div>
+        <div class="bubble us">Yes — Tempe is in area. Tonight is emergency-only after 9. Tomorrow we have 8:30 and 11:00. What’s going on with the unit?</div>
+        <div class="bubble them">it’s blowing warm, house is 82. not dying, just miserable.</div>
+        <div class="bubble us">That’s a tomorrow job, not a 2am truck. I can hold 8:30. Name and mobile and I’ll put it on the board.</div>
+        <div class="bubble them">Chris, 480-555-0142</div>
+        <div class="bubble us">Booked. You’ll get a text from the office in the morning. If it starts tripping the breaker or smelling hot, call the emergency line and say Afterhours sent you.</div>
+      </div>
+      <div class="card" id="how">
+        <p class="kicker">How it works</p>
+        <h2>7 days. Your site. Their calendar.</h2>
+        <ol>
+          <li>30-min call: services, area, prices you’ll actually say, booking rules.</li>
+          <li>We train the closer on your real FAQs — not generic chatbot sludge.</li>
+          <li>A small widget on the site you already have. No redesign.</li>
+          <li>Leads and bookings hit your email/calendar. We watch transcripts for 14 days.</li>
+        </ol>
+        <p class="fine">It will never pretend to be a licensed tech. It will never invent a firm quote. If they need a human, it hands off.</p>
+      </div>
+    </section>
+
+    <section class="split" id="price">
+      <div class="card">
+        <p class="kicker">Install</p>
+        <p class="price">$490</p>
+        <p class="fine">Once. Widget, training, calendar, 14-day tuning. 50% to start.</p>
+      </div>
+      <div class="card">
+        <p class="kicker">Retainer</p>
+        <p class="price">$149<span class="fine">/mo</span></p>
+        <p class="fine">Hosting, monitoring, prompt fixes, weekly recap.</p>
+      </div>
+      <div class="card">
+        <p class="kicker">Guarantee</p>
+        <p class="price" style="font-size:28px;line-height:1.15;">One qualified booking in 14 days or we keep working at no extra labor.</p>
+        <p class="fine">You need existing traffic or ads. We don’t manufacture demand.</p>
+      </div>
+    </section>
+
+    <section class="card" id="book" style="margin-bottom:56px;">
+      <p class="kicker">Start</p>
+      <h2>If after-hours inquiries already convert, you don’t need this.</h2>
+      <p class="fine">If they sit until morning while the next ad gets the job, book 15 minutes. Bring a site URL and what a new job is worth.</p>
+      <p style="margin-top:22px;">
+        <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Start on Upwork (escrow)</a>
+      </p>
+    </section>
+
+    <footer>
+      Afterhours · Devashish Singh · not affiliated with xAI.
+      Tap the blue CHAT — play a customer at 11pm. Zip 85016.
+    </footer>
+  </div>
+
+  <button id="ah-bubble" type="button" aria-label="Open demo chat">CHAT</button>
+  <div id="ah-panel">
+    <div id="ah-head">Demo closer · <strong>Desert Coil HVAC</strong> · Sat 11:14pm closed</div>
+    <div id="ah-log"></div>
+    <div id="ah-ticket"></div>
+    <form id="ah-form">
+      <input id="ah-input" autocomplete="off" placeholder="Type as the homeowner…" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  <script>
+    const log = document.getElementById("ah-log");
+    const panel = document.getElementById("ah-panel");
+    const ticket = document.getElementById("ah-ticket");
+    const state = { step: "issue", issue: "", zip: "", when: "", name: "", phone: "" };
+    const zips = ["85001","85003","85004","85006","85008","85012","85014","85016","85018","85020","85021","85022","85023","85024","85027","85029","85032","85044","85048","85201","85202","85224","85225","85226","85251","85254","85255","85281","85282","85283","85284","85301","85302","85308","85331","85339","85353","85383"];
+
+    function add(who, text) {
+      const d = document.createElement("div");
+      d.className = "ah-row " + (who === "bot" ? "ah-bot" : "ah-user");
+      d.textContent = text;
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+    }
+    function bot(t) { setTimeout(() => add("bot", t), 350); }
+
+    document.getElementById("ah-bubble").onclick = () => {
+      panel.classList.toggle("open");
+      if (panel.classList.contains("open") && log.childElementCount === 0) {
+        bot("Hey — Desert Coil is closed, but I can still check if we can take this and get you on the calendar. What’s going on with the AC or heat?");
+      }
+    };
+
+    document.getElementById("ah-form").onsubmit = (e) => {
+      e.preventDefault();
+      const input = document.getElementById("ah-input");
+      const t = input.value.trim();
+      if (!t) return;
+      add("user", t);
+      input.value = "";
+      reply(t);
+    };
+
+    function reply(t) {
+      const low = t.toLowerCase();
+      if (/(lawyer|legal|medical|gas leak|carbon monoxide|fire)/.test(low)) {
+        bot("If you smell gas or CO, hang up this chat and call 911 / the gas company. I can’t handle that.");
+        return;
+      }
+      if (state.step === "issue") {
+        state.issue = t;
+        state.step = "zip";
+        bot("Got it. What zip code? We run Phoenix, Tempe, Mesa, Scottsdale, Glendale, Chandler.");
+        return;
+      }
+      if (state.step === "zip") {
+        const zip = (t.match(/\b\d{5}\b/) || [t.replace(/\D/g,"").slice(0,5)])[0];
+        state.zip = zip;
+        if (zips.includes(zip) || /phoenix|tempe|mesa|scottsdale|glendale|chandler|peoria/i.test(t)) {
+          state.step = "when";
+          bot("That’s in area. Tonight is emergency-only after 9 (no cooling at all, or a breaker/smell). Otherwise we have tomorrow 8:30 or 11:00. Which do you want?");
+        } else {
+          bot("We probably don’t cover that zip. I can still take your name and have the office confirm in the morning — or you can try a closer company. Want me to note it anyway?");
+          state.step = "when";
+        }
+        return;
+      }
+      if (state.step === "when") {
+        state.when = t;
+        state.step = "name";
+        bot("Name for the ticket?");
+        return;
+      }
+      if (state.step === "name") {
+        state.name = t;
+        state.step = "phone";
+        bot("Mobile number? Office texts this in the morning.");
+        return;
+      }
+      if (state.step === "phone") {
+        state.phone = t;
+        state.step = "done";
+        bot("Booked. Desert Coil will text " + state.name + " in the morning about " + state.when + ". If it starts tripping a breaker or smelling hot, call the emergency line and say Afterhours sent you.");
+        ticket.style.display = "block";
+        ticket.textContent =
+          "LEAD TICKET (what the owner gets by email)\n" +
+          "Name: " + state.name + "\n" +
+          "Phone: " + state.phone + "\n" +
+          "Zip: " + state.zip + "\n" +
+          "Issue: " + state.issue + "\n" +
+          "Slot: " + state.when + "\n" +
+          "Source: website chat · Sat 11:14pm";
+        return;
+      }
+      bot("You’re on the board. If you need to change the slot, say so.");
+    }
+  </script>
+</body>
+</html>

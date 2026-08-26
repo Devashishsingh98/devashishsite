@@ -31,9 +31,8 @@ Flagship: https://github.com/Devashishsingh98/pdf-lens
 2. **Job notification extractor** — Telegram scrape → Gemini parse → eligibility match → notify.  
    URL: https://github.com/Devashishsingh98/jobNotificationExtractor
 
-3. **Afterhours chat (demo)** — qualifying widget that writes a lead ticket.  
-   URL: https://www.devashish98.xyz/afterhours  
-   Try zip `85016`.
+3. **StudyHelper** — streaming AI over a PDF with follow-up lenses.  
+   URL: https://github.com/Devashishsingh98/studyhelper
 
 ## Skills
 

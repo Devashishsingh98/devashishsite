@@ -1,1 +1,9 @@
-{ "cleanUrls": true }
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/afterhours", "destination": "/", "permanent": true },
+    { "source": "/afterhours.html", "destination": "/", "permanent": true },
+    { "source": "/mock", "destination": "/", "permanent": true },
+    { "source": "/mock.html", "destination": "/", "permanent": true }
+  ]
+}

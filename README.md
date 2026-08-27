@@ -1,11 +1,18 @@
 # Devashish Singh — site
 
-Upwork-ready profile.
+2100-era portfolio. Static. No build step. Vercel serves the folder as-is.
 
-- Live: https://www.devashish98.xyz
-- GitHub: https://github.com/Devashishsingh98
-- Upwork: https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a
+Live: https://www.devashish98.xyz
 
-Featured from GitHub: **pdf-lens**, **jobNotificationExtractor**, **studyhelper**. The page also fetches public repos and hides forks / classroom toys.
+```
+index.html          shell + content
+css/site.css        tokens, HUD, spatial layout
+js/app.js           boot, clock, tilt, spine
+js/scene.js         Three.js photonic core + aurora shader
+js/github.js        live repos, filtered
+assets/             project stills
+```
 
-Paste for the Upwork profile: [`UPWORK-PASTE.md`](UPWORK-PASTE.md)
+Three.js loads from jsDelivr at runtime. `prefers-reduced-motion` and `Save-Data` skip WebGL.
+
+Paste for Upwork: [`UPWORK-PASTE.md`](UPWORK-PASTE.md)

@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#0e0d0b"/>
-  <text x="16" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#e6b35a">DS</text>
+  <rect width="32" height="32" rx="4" fill="#05040c"/>
+  <path d="M6 6h8v2H8v16h6v2H6V6zm12 0h8v2h-6v7h5v2h-5v9h6v2h-8V6z" fill="#c6ff3b"/>
+  <circle cx="26" cy="6" r="1.4" fill="#8b7cff"/>
 </svg>

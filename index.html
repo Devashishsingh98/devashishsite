@@ -13,10 +13,11 @@
   <meta property="og:url" content="https://www.devashish98.xyz/" />
   <meta property="og:image" content="https://www.devashish98.xyz/assets/pdf-lens-workspace.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#0e0d0b" />
+  <meta name="theme-color" content="#05040c" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,640;9..144,720&family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -31,236 +32,93 @@
     ]
   }
   </script>
-  <style>
-    :root {
-      --bg: #0e0d0b;
-      --paper: #171613;
-      --paper-2: #1f1c18;
-      --ink: #f3efe6;
-      --muted: #a39c90;
-      --line: #2c2923;
-      --brass: #e6b35a;
-      --brass-ink: #1a1408;
-      --mint: #8fd9b5;
-      --danger: #d4786a;
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: Sora, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.55;
-      font-size: 16px;
-    }
-    a { color: inherit; }
-    img { max-width: 100%; display: block; }
-    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
-    .kicker {
-      margin: 0 0 12px;
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--brass);
-      font-weight: 600;
-    }
-    h1, h2, h3 { font-family: Fraunces, Georgia, serif; letter-spacing: -0.03em; font-weight: 640; }
-    h1 { font-size: clamp(44px, 8vw, 84px); line-height: 0.95; margin: 0 0 22px; }
-    h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; margin: 0 0 12px; }
-    h3 { font-size: 26px; line-height: 1.15; margin: 0 0 10px; }
-    p { margin: 0 0 14px; }
-    .muted { color: var(--muted); }
-    header.nav {
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(14,13,11,.78);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-in {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 0; gap: 16px;
-    }
-    .brand {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; font-weight: 600; font-size: 14px;
-    }
-    .brand-name { white-space: nowrap; }
-    .mark {
-      width: 28px; height: 28px; border-radius: 7px;
-      background: var(--brass); color: var(--brass-ink);
-      display: grid; place-items: center;
-      font-family: Fraunces, Georgia, serif; font-weight: 720; font-size: 13px;
-    }
-    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 13px; color: var(--muted); }
-    .nav-links a { text-decoration: none; }
-    .nav-links a:hover { color: var(--ink); }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      text-decoration: none; border-radius: 999px;
-      padding: 12px 18px; font-size: 13px; font-weight: 600;
-      border: 1px solid transparent; transition: transform .15s ease, background .15s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--brass); color: var(--brass-ink); }
-    .btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
-    .hero { padding: 72px 0 28px; }
-    .lede { font-size: 18px; color: var(--muted); max-width: 46ch; margin-bottom: 28px; }
-    .row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .meta-bar {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: var(--line); border: 1px solid var(--line);
-      border-radius: 14px; overflow: hidden; margin: 48px 0 0;
-    }
-    .meta-bar div { background: var(--paper); padding: 18px 16px; }
-    .meta-bar strong { display: block; font-size: 18px; font-family: Fraunces, Georgia, serif; }
-    .meta-bar span { color: var(--muted); font-size: 12px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-    .chip {
-      border: 1px solid var(--line); color: var(--muted);
-      border-radius: 999px; padding: 6px 10px; font-size: 12px;
-    }
-    section { padding: 72px 0; }
-    .section-head { max-width: 56ch; margin-bottom: 28px; }
-    .feature {
-      display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px;
-      background: var(--paper); border: 1px solid var(--line);
-      border-radius: 18px; overflow: hidden; margin-bottom: 18px;
-    }
-    .feature-copy { padding: 28px; }
-    .shot {
-      min-height: 280px;
-      background: #111 url("assets/pdf-lens-home.jpg") center top / cover no-repeat;
-      border-left: 1px solid var(--line);
-    }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .card {
-      background: var(--paper); border: 1px solid var(--line);
-      border-radius: 16px; padding: 22px;
-    }
-    .card:hover { border-color: #4a4338; }
-    .why {
-      font-size: 14px; color: var(--ink);
-      border-left: 2px solid var(--brass);
-      padding-left: 12px; margin: 14px 0;
-    }
-    .stack { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 18px; padding: 0; list-style: none; }
-    .stack li {
-      font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
-      color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px;
-    }
-    .links { display: flex; gap: 14px; font-size: 13px; font-weight: 600; }
-    .links a { color: var(--brass); text-decoration: none; }
-    .links a:hover { text-decoration: underline; }
-    .live { color: var(--mint); font-size: 12px; font-weight: 600; }
-    .gh-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-    .gh-card {
-      background: var(--paper-2); border: 1px solid var(--line);
-      border-radius: 14px; padding: 16px; text-decoration: none; display: block;
-      min-height: 150px;
-    }
-    .gh-card:hover { border-color: #4a4338; }
-    .gh-card h3 { font-size: 18px; margin-bottom: 6px; }
-    .gh-card p { color: var(--muted); font-size: 13px; }
-    .gh-meta { display: flex; gap: 12px; color: var(--muted); font-size: 12px; margin-top: 12px; }
-    .packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .price { font-family: Fraunces, Georgia, serif; font-size: 40px; margin: 8px 0 4px; }
-    .price span { font-size: 16px; color: var(--muted); font-family: Sora, sans-serif; }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .good li, .skip li { margin: 8px 0; color: var(--muted); }
-    .good li::marker { color: var(--mint); }
-    .skip li::marker { color: var(--danger); }
-    .cta {
-      background:
-        radial-gradient(800px 240px at 10% 0%, rgba(230,179,90,.12), transparent 50%),
-        var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 36px;
-    }
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0 48px;
-      color: var(--muted); font-size: 13px;
-      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-    }
-    .status { color: var(--muted); font-size: 13px; min-height: 1.4em; }
-    .hire-dock {
-      display: none; position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 30;
-    }
-    @media (max-width: 860px) {
-      .nav-links .hide { display: none; }
-      .feature, .grid, .packages, .split, .gh-grid, .meta-bar { grid-template-columns: 1fr; }
-      .shot { min-height: 220px; border-left: 0; border-top: 1px solid var(--line); }
-      .hero { padding-top: 40px; }
-      .brand-name { display: none; }
-      .hire-dock { display: block; }
-      .hire-dock .btn { width: 100%; box-shadow: var(--shadow); }
-      footer { padding-bottom: 88px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .btn:hover { transform: none; }
-    }
-  </style>
 </head>
 <body>
+  <a class="skip-link" href="#work">Skip to work</a>
+
+  <div id="boot" class="boot" role="status">
+    <div>
+      <div class="boot-mark">DS</div>
+      <p class="boot-log">PHOTONIC CORE <b>ONLINE</b></p>
+      <div class="boot-bar"><i></i></div>
+    </div>
+  </div>
+
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scan" aria-hidden="true"></div>
+  <div class="hud-frame" aria-hidden="true">
+    <span class="tl"></span><span class="tr"></span>
+    <span class="bl"></span><span class="br"></span>
+  </div>
+
+  <nav class="spine" aria-label="Sections">
+    <a href="#top" class="is-on">00</a>
+    <a href="#work">01</a>
+    <a href="#offer">02</a>
+    <a href="#hire">03</a>
+  </nav>
+
   <header class="nav">
     <div class="wrap nav-in">
-      <a class="brand" href="/">
+      <a class="brand" href="/" id="top">
         <span class="mark">DS</span>
-        <span class="brand-name">Devashish Singh</span>
+        <span class="brand-name">DEVASHISH // 98</span>
       </a>
       <nav class="nav-links">
+        <span class="hud-clock hide" title="India Standard Time">IST <span id="ist-clock">--:--:--</span></span>
         <a class="hide" href="#work">Work</a>
-        <a class="hide" href="#offer">Offer</a>
+        <a class="hide" href="#offer">Protocols</a>
         <a href="https://github.com/Devashishsingh98">GitHub</a>
         <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Hire on Upwork</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main class="world">
     <section class="hero wrap">
-      <p class="kicker">Available · 7-day product sprints</p>
-      <h1>Ship the product.<br />Keep the repo.</h1>
-      <p class="lede">I take Upwork jobs that need a working app — Next.js / React, RAG over your files, agents, dashboards — and hand you a live URL. Fixed price. 50% escrow. No decks.</p>
-      <div class="row">
-        <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Start on Upwork</a>
-        <a class="btn btn-ghost" href="#work">See the work</a>
+      <div class="hero-copy">
+        <p class="kicker"><span class="pulse"></span>Available · node IST · 7-day sprints</p>
+        <h1>Ship the product.<br /><span class="ion">Keep the repo.</span></h1>
+        <p class="lede">I take Upwork jobs that need a working app — Next.js / React, RAG over your files, agents, dashboards — and hand you a live URL. Fixed price. 50% escrow. No decks.</p>
+        <div class="row">
+          <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Start on Upwork</a>
+          <a class="btn btn-ghost" href="#work">Inspect work</a>
+        </div>
+        <div class="chips" aria-label="Stack">
+          <span class="chip">Next.js</span>
+          <span class="chip">React</span>
+          <span class="chip">Node</span>
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">RAG</span>
+          <span class="chip">Agents</span>
+          <span class="chip">Vercel</span>
+        </div>
+        <div class="telemetry">
+          <div><strong>07d</strong><span>First working slice</span></div>
+          <div><strong>$1.5k–$4k</strong><span>Fixed · 50% escrow</span></div>
+          <div><strong>IST</strong><span>US morning overlap</span></div>
+          <div><strong id="repo-count">27</strong><span>Public repos</span></div>
+        </div>
       </div>
-      <div class="chips" aria-label="Stack">
-        <span class="chip">Next.js</span>
-        <span class="chip">React</span>
-        <span class="chip">Node</span>
-        <span class="chip">Python</span>
-        <span class="chip">FastAPI</span>
-        <span class="chip">RAG</span>
-        <span class="chip">Agents</span>
-        <span class="chip">Vercel</span>
-      </div>
-      <div class="meta-bar">
-        <div><strong>7 days</strong><span>First working slice</span></div>
-        <div><strong>$1.5k–$4k</strong><span>Fixed, 50% escrow</span></div>
-        <div><strong>India · IST</strong><span>US morning overlap</span></div>
-        <div><strong id="repo-count">27 repos</strong><span>Selected work below</span></div>
-      </div>
+      <div class="hero-void" aria-hidden="true"></div>
     </section>
 
     <section id="work" class="wrap">
       <div class="section-head">
-        <p class="kicker">Selected work</p>
+        <p class="kicker">01 // Selected work</p>
         <h2>Projects that map to the jobs I want.</h2>
-        <p class="muted">Pulled from <a href="https://github.com/Devashishsingh98">github.com/Devashishsingh98</a>. Student toys and forks stay off this page. Each card says which Upwork ticket it proves.</p>
+        <p class="muted">Pulled from <a href="https://github.com/Devashishsingh98">github.com/Devashishsingh98</a>. Student toys and forks stay off this page. Each module says which ticket it proves.</p>
       </div>
 
-      <article class="feature">
+      <article class="feature tilt">
         <div class="feature-copy">
           <p class="kicker">Flagship · RAG · PDF · chat</p>
           <h3>PDF Lens</h3>
           <p class="muted">An AI reading workspace. Highlight a sentence in a paper or a model reply — Explain, Teach, Example, Code, Go Deeper. Nested answers stay open so you don’t lose the thread. Chrome extension optional.</p>
-          <p class="why">This is the proof I can put chat-on-your-docs in a real product, not a ChatGPT skin.</p>
+          <p class="why">Proof I can put chat-on-your-docs in a real product, not a ChatGPT skin.</p>
           <ul class="stack">
             <li>React</li><li>Vite</li><li>Express</li><li>OpenAI / OpenRouter</li><li>pdf.js</li><li>SQLite</li><li>local embeddings</li>
           </ul>
@@ -272,7 +130,7 @@
       </article>
 
       <div class="grid">
-        <article class="card">
+        <article class="card tilt">
           <p class="kicker">Automation · scrape · match</p>
           <h3>Job notification extractor</h3>
           <p class="muted">Telegram channels in. Structured job cards out. Regex first, Gemini when the post is messy. Eligibility by age, category, education, state. Celery every 15 minutes. React admin.</p>
@@ -285,7 +143,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card tilt">
           <p class="kicker">Streaming AI · documents</p>
           <h3>StudyHelper</h3>
           <p class="muted">Exam study workspace. Highlight a passage, pick a lens (legal, socio-economic, PYQ), get a streamed insight. Follow-ups stay in the same panel. OCR when the page is a scan.</p>
@@ -298,7 +156,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card tilt">
           <p class="kicker">Storefront · Node</p>
           <h3>Commerce + realtime chat</h3>
           <p class="muted">An Express shop with sessions, cart, and uploads. Separately: a Django Channels room on Redis/WebSockets. Older, still honest backend work.</p>
@@ -316,39 +174,39 @@
 
     <section class="wrap" id="github">
       <div class="section-head">
-        <p class="kicker">From GitHub</p>
+        <p class="kicker">01b // From GitHub</p>
         <h2>More public repos, filtered.</h2>
-        <p class="muted status" id="gh-status">Loading public repositories…</p>
+        <p class="muted status" id="gh-status">Linking live repositories…</p>
       </div>
       <div class="gh-grid" id="gh-grid"></div>
     </section>
 
     <section id="offer" class="wrap">
       <div class="section-head">
-        <p class="kicker">Offer</p>
+        <p class="kicker">02 // Protocols</p>
         <h2>One job: a working slice in 7 days.</h2>
         <p class="muted">50% on Upwork escrow to start. You get the URL and the repository. Hourly only if you force it: $60–$80, so $15/hr tickets bounce off.</p>
       </div>
-      <div class="packages">
-        <article class="card">
+      <div class="orbit">
+        <article class="panel slab tilt" style="--i:0">
           <p class="kicker">Slice</p>
           <p class="price">$1,500</p>
           <p class="muted">One feature on an existing app, or a thin MVP. Deployed.</p>
         </article>
-        <article class="card">
+        <article class="panel slab tilt" style="--i:1">
           <p class="kicker">Sprint</p>
           <p class="price">$2,500</p>
           <p class="muted">Auth + one AI workflow (RAG, agent, or chat on your data) + deploy.</p>
         </article>
-        <article class="card">
+        <article class="panel slab tilt" style="--i:2">
           <p class="kicker">Product</p>
           <p class="price">$4,000</p>
           <p class="muted">Small SaaS: users, payments or admin, and the AI core.</p>
         </article>
       </div>
 
-      <div class="split" style="margin-top:16px;">
-        <article class="card">
+      <div class="split">
+        <article class="card tilt">
           <h3>Good fit</h3>
           <ul class="good">
             <li>Next.js / React MVP</li>
@@ -358,7 +216,7 @@
             <li>Scrape → parse → notify pipelines</li>
           </ul>
         </article>
-        <article class="card">
+        <article class="card tilt">
           <h3>I will pass</h3>
           <ul class="skip">
             <li>ManyChat, GHL, Zapier-only clicking</li>
@@ -372,8 +230,8 @@
     </section>
 
     <section class="wrap" id="hire">
-      <div class="cta">
-        <p class="kicker">Hire</p>
+      <div class="cta tilt">
+        <p class="kicker">03 // Transmit</p>
         <h2>Open the job. Send the stack.</h2>
         <p class="muted" style="max-width:46ch;">I’ll reply in five lines with what ships in week 1. Prefer fixed price. India-based, available 30+ hrs, overlap with US mornings.</p>
         <div class="row" style="margin-top:22px;">
@@ -385,7 +243,7 @@
   </main>
 
   <footer class="wrap">
-    <div>Devashish Singh · full-stack + AI · not affiliated with xAI or Upwork.</div>
+    <div>Devashish Singh · full-stack + AI · not affiliated with xAI or Upwork. · <span id="year">2026</span></div>
     <div>https://www.devashish98.xyz</div>
   </footer>
 
@@ -393,86 +251,6 @@
     <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a">Hire on Upwork</a>
   </div>
 
-  <script>
-    const FEATURED = new Set([
-      "pdf-lens", "jobNotificationExtractor", "studyhelper",
-      "ecommerce", "RealTimeChatRoom", "devashishsite"
-    ]);
-    const SKIP = new Set([
-      "skills", "scrapy", "contributor_covenant", "codingblocks.online.projectx",
-      "yourfirstpr.github.io", "candy", "stopwatch", "Guess-The-color",
-      "scoreregister", "project", "Devashishsingh98", "TODO", "Attendance",
-      "animo", "TextUtils", "Todo-List", "moviecompare", "messageshare",
-      "Blog_site"
-    ]);
-    const COPY = {
-      weatherapi: "Full shopping SPA: catalog, search, cart, checkout, wishlist. (Repo name is leftover.)",
-      imdbdata: "Scrapy crawl of IMDb-style listings — useful when the ticket is a scraper.",
-    };
-
-    const status = document.getElementById("gh-status");
-    const grid = document.getElementById("gh-grid");
-
-    function score(repo) {
-      let n = 0;
-      if (repo.description) n += 2;
-      if (repo.size > 40) n += 2;
-      if (["JavaScript", "TypeScript", "Python"].includes(repo.language)) n += 2;
-      const year = Number((repo.pushed_at || "").slice(0, 4));
-      if (year >= 2026) n += 4;
-      else if (year >= 2022) n += 2;
-      if (repo.homepage) n += 1;
-      return n;
-    }
-
-    fetch("https://api.github.com/users/Devashishsingh98")
-      .then((r) => r.ok ? r.json() : null)
-      .then((user) => {
-        if (user && user.public_repos) {
-          document.getElementById("repo-count").textContent = user.public_repos + " repos";
-        }
-      })
-      .catch(() => {});
-
-    fetch("https://api.github.com/users/Devashishsingh98/repos?per_page=100&sort=updated")
-      .then((r) => {
-        if (!r.ok) throw new Error("GitHub " + r.status);
-        return r.json();
-      })
-      .then((repos) => {
-        const picked = repos
-          .filter((repo) => {
-            if (repo.fork || FEATURED.has(repo.name) || SKIP.has(repo.name)) return false;
-            if (repo.size < 30) return false;
-            const year = Number((repo.pushed_at || "").slice(0, 4));
-            return year >= 2022 && score(repo) >= 5;
-          })
-          .sort((a, b) => score(b) - score(a) || new Date(b.pushed_at) - new Date(a.pushed_at))
-          .slice(0, 3);
-
-        if (!picked.length) {
-          document.getElementById("github").hidden = true;
-          return;
-        }
-        status.textContent = "Live from GitHub · forks and classroom toys omitted.";
-        grid.innerHTML = picked.map((repo) => {
-          const blurb = COPY[repo.name] || repo.description || "Public repository.";
-          const pushed = (repo.pushed_at || "").slice(0, 10);
-          return (
-            '<a class="gh-card" href="' + repo.html_url + '">' +
-              '<h3>' + repo.name + '</h3>' +
-              '<p>' + blurb + '</p>' +
-              '<div class="gh-meta">' +
-                '<span>' + (repo.language || "repo") + '</span>' +
-                '<span>' + pushed + '</span>' +
-              '</div>' +
-            '</a>'
-          );
-        }).join("");
-      })
-      .catch(() => {
-        status.textContent = "GitHub is quiet right now. The featured work above is enough.";
-      });
-  </script>
+  <script type="module" src="/js/app.js"></script>
 </body>
 </html>

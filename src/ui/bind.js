@@ -15,11 +15,11 @@ export function bindSystems() {
       c.classList.toggle("is-dim", Boolean(techs) && !match);
     });
     if (!techs || !hits.length) {
-      related.textContent = "Select a layer to see where it ships.";
+      related.textContent = "Pick a type of work to see matching projects.";
       return;
     }
     const label = systems.find((s) => s.techs.join(",") === techs.join(","))?.layer || "This";
-    related.innerHTML = `<strong>${label}</strong> shows up in ${hits.map((p) => p.title).join(", ")}.`;
+    related.innerHTML = `<strong>${label}</strong> is used in ${hits.map((p) => p.title).join(", ")}.`;
   };
 
   buttons.forEach((btn) => {

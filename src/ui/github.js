@@ -31,7 +31,7 @@ export async function mountGithub(root) {
       .sort((a, b) => score(b) - score(a))
       .slice(0, 3);
 
-    const count = user?.public_repos ? `${user.public_repos} public repositories` : "Public repositories";
+    const count = user?.public_repos ? `${user.public_repos} public projects` : "Public projects";
     const extras = extra
       .map((r) => `<a href="${r.html_url}">${r.name}</a>`)
       .join(" · ");

@@ -41,7 +41,7 @@ function mapSvg() {
       </g>`
     )
     .join("");
-  return `<svg class="map-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="How a job moves from input to product">${paths}${dots}</svg>`;
+  return `<svg class="map-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="How work moves from incoming files to a live website">${paths}${dots}</svg>`;
 }
 
 export function render() {
@@ -77,8 +77,8 @@ export function render() {
 
       <section class="work" id="work">
         <div class="work-head" data-reveal>
-          <p class="kicker">Selected work</p>
-          <h2>Software that already exists.</h2>
+          <p class="kicker">Work</p>
+          <h2>Things I’ve already built.</h2>
         </div>
         ${projects
           .map(
@@ -104,10 +104,10 @@ export function render() {
       <section class="capabilities" id="capabilities">
         <div class="cap-head" data-reveal>
           <div>
-            <p class="kicker">Capabilities</p>
-            <h2>What I can create.</h2>
+            <p class="kicker">What I do</p>
+            <h2>What I can do for you.</h2>
           </div>
-          <p>The stack only matters where it shows up in a product. Hover a layer — related work lights up.</p>
+          <p>Hover a type of work to see which projects use it.</p>
         </div>
         <div class="sys-row" data-reveal>
           ${systems
@@ -120,10 +120,10 @@ export function render() {
             )
             .join("")}
         </div>
-        <p class="related" id="related">Select a layer to see where it ships.</p>
+        <p class="related" id="related">Pick a type of work to see matching projects.</p>
 
         <div class="map" data-reveal>
-          <p class="kicker">How a job actually moves</p>
+          <p class="kicker">How the work flows</p>
           ${mapSvg()}
           <p class="map-note" id="map-note">${esc(mapLayers[0].hint)}</p>
         </div>
@@ -137,11 +137,11 @@ export function render() {
         </dl>
         <div class="split" data-reveal>
           <div>
-            <h3>Good fit</h3>
+            <h3>A good match</h3>
             <ul class="take">${about.take.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
           </div>
           <div>
-            <h3>I will pass</h3>
+            <h3>Not a fit</h3>
             <ul>${about.skip.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
           </div>
         </div>

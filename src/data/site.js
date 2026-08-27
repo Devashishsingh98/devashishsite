@@ -24,7 +24,7 @@ export const nav = [
 
 export const hero = {
   kicker: "AI engineer · full-stack systems · product builder",
-  title: ["I build intelligent systems", "that actually ship."],
+  title: ["I build intelligent", "systems that", "actually ship."],
   lede:
     "Working web products in seven days — Next.js, RAG over your files, agents, dashboards. You get a live URL and the repository. Fixed price. No decks.",
   primary: { label: "Explore my work", href: "#work" },
@@ -109,50 +109,38 @@ export const projects = [
 
 export const systems = [
   {
-    id: "frontend",
-    layer: "Frontend",
-    items: [
-      { id: "react", label: "React" },
-      { id: "next", label: "Next.js" },
-      { id: "ts", label: "TypeScript" },
-    ],
-  },
-  {
-    id: "backend",
-    layer: "Backend",
-    items: [
-      { id: "node", label: "Node" },
-      { id: "python", label: "Python" },
-      { id: "fastapi", label: "FastAPI" },
-    ],
-  },
-  {
-    id: "ai",
+    id: "intelligence",
     layer: "Intelligence",
-    items: [
-      { id: "rag", label: "RAG" },
-      { id: "embeddings", label: "Embeddings" },
-      { id: "agents", label: "Agents" },
-    ],
+    line: "RAG, embeddings, agents, chat on your documents.",
+    techs: ["rag", "embeddings", "agents"],
   },
   {
-    id: "infra",
-    layer: "Infrastructure",
-    items: [
-      { id: "redis", label: "Redis" },
-      { id: "pipelines", label: "Queues / cron" },
-      { id: "deploy", label: "Vercel / APIs" },
-    ],
+    id: "systems",
+    layer: "Systems",
+    line: "Queues, Redis, FastAPI, scheduled pipelines.",
+    techs: ["fastapi", "redis", "pipelines", "python"],
+  },
+  {
+    id: "product",
+    layer: "Product",
+    line: "Next.js / React interfaces, auth, admin, deploy.",
+    techs: ["react", "next", "node"],
+  },
+  {
+    id: "automation",
+    layer: "Automation",
+    line: "Ingest, parse, match, notify — without a human in the loop.",
+    techs: ["pipelines", "python", "redis"],
   },
 ];
 
 export const mapLayers = [
-  { id: "input", label: "Input", hint: "PDFs, Telegram, forms, APIs" },
-  { id: "data", label: "Data", hint: "SQLite, Supabase, sessions" },
-  { id: "process", label: "Processing", hint: "Celery, Redis, regex, OCR" },
-  { id: "intel", label: "Intelligence", hint: "RAG, embeddings, Gemini, OpenAI" },
-  { id: "action", label: "Action", hint: "notify, stream, book, write" },
-  { id: "product", label: "Product", hint: "Next.js / React UI, live URL" },
+  { id: "input", label: "Input", hint: "PDFs, Telegram, forms, APIs", x: 10, y: 68, to: ["data"] },
+  { id: "data", label: "Data", hint: "SQLite, Supabase, sessions", x: 26, y: 30, to: ["process"] },
+  { id: "process", label: "Processing", hint: "Celery, Redis, regex, OCR", x: 46, y: 58, to: ["intel"] },
+  { id: "intel", label: "Intelligence", hint: "RAG, embeddings, Gemini, OpenAI", x: 62, y: 22, to: ["action"] },
+  { id: "action", label: "Action", hint: "notify, stream, book, write", x: 80, y: 52, to: ["product"] },
+  { id: "product", label: "Product", hint: "Next.js / React UI, live URL", x: 94, y: 28, to: [] },
 ];
 
 export const about = {

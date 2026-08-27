@@ -12,7 +12,36 @@ function visual(p) {
   if (p.visual) {
     return `<div class="case-visual"><img src="${esc(p.visual)}" alt="${esc(p.visualAlt || p.title)}" loading="lazy" /></div>`;
   }
-  return `<div class="case-visual"><div class="case-fallback">${esc(p.num)} / ${esc(p.category)}</div></div>`;
+  return `<div class="case-visual case-visual--type"><span>${esc(p.title)}</span></div>`;
+}
+
+function mapSvg() {
+  const W = 1000;
+  const H = 380;
+  const nodes = mapLayers.map((n) => ({ ...n, px: (n.x / 100) * W, py: (n.y / 100) * H }));
+  const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
+  const paths = nodes
+    .flatMap((n) =>
+      (n.to || []).map((id) => {
+        const b = byId[id];
+        if (!b) return "";
+        const mx = (n.px + b.px) / 2;
+        const my = Math.min(n.py, b.py) - 48;
+        return `<path class="map-arc" data-from="${esc(n.id)}" data-to="${esc(id)}" d="M${n.px} ${n.py} Q ${mx} ${my} ${b.px} ${b.py}" fill="none" />`;
+      })
+    )
+    .join("");
+  const dots = nodes
+    .map(
+      (n) => `
+      <g class="map-node" data-id="${esc(n.id)}" data-hint="${esc(n.hint)}">
+        <circle class="map-halo" cx="${n.px}" cy="${n.py}" r="18" />
+        <circle class="map-dot" cx="${n.px}" cy="${n.py}" r="4.5" />
+        <text x="${n.px}" y="${n.py + 32}" text-anchor="middle">${esc(n.label)}</text>
+      </g>`
+    )
+    .join("");
+  return `<svg class="map-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="How a job moves from input to product">${paths}${dots}</svg>`;
 }
 
 export function render() {
@@ -28,32 +57,21 @@ export function render() {
 
     <main class="site">
       <section class="hero" id="top">
-        <div class="hero-copy" data-reveal>
-          <p class="kicker">${esc(hero.kicker)}</p>
-          <h1>${esc(hero.title[0])}<br /><span class="end">${esc(hero.title[1])}</span></h1>
-          <p class="lede">${esc(hero.lede)}</p>
-          <div class="row">
+        <div class="hero-copy">
+          <p class="kicker" data-in>${esc(hero.kicker)}</p>
+          <h1 data-in>${hero.title.map((line, i) => `${i ? "<br />" : ""}${esc(line)}`).join("")}</h1>
+          <p class="lede" data-in>${esc(hero.lede)}</p>
+          <div class="row" data-in>
             <a class="btn btn-fill" href="${esc(hero.primary.href)}">${esc(hero.primary.label)}</a>
-            <a class="btn btn-line" href="${esc(hero.secondary.href)}">${esc(hero.secondary.label)}</a>
+            <a class="text-link" href="${esc(hero.secondary.href)}">${esc(hero.secondary.label)}</a>
           </div>
         </div>
-        <div class="hero-void" aria-hidden="true"></div>
       </section>
 
-      <section class="intro wrap-bleed">
-        <div class="intro-grid wrap" style="width:min(var(--max), calc(100% - var(--pad) * 2)); margin:0 auto;">
-          <div data-reveal>
-            <p class="kicker">${esc(intro.kicker)}</p>
-            <h2>${esc(intro.statement)}</h2>
-          </div>
-          <div data-reveal>
-            ${intro.lines
-              .map(
-                (l) =>
-                  `<div class="capability"><strong>${esc(l.em)}</strong><span>${esc(l.rest)}</span></div>`
-              )
-              .join("")}
-          </div>
+      <section class="intro">
+        <div class="intro-inner" data-reveal>
+          <p class="kicker">${esc(intro.kicker)}</p>
+          <h2>${esc(intro.statement)}</h2>
         </div>
       </section>
 
@@ -66,6 +84,7 @@ export function render() {
           .map(
             (p) => `
           <article class="case" id="${esc(p.id)}">
+            <span class="case-num" aria-hidden="true">${esc(p.num)}</span>
             ${visual(p)}
             <div class="case-copy" data-reveal>
               <div class="case-index">${esc(p.num)} — ${esc(p.category)}</div>
@@ -86,42 +105,26 @@ export function render() {
         <div class="cap-head" data-reveal>
           <div>
             <p class="kicker">Capabilities</p>
-            <h2>Systems I work with.</h2>
+            <h2>What I can create.</h2>
           </div>
-          <p>Not a badge wall. These are the layers that actually appear in the work above.</p>
+          <p>The stack only matters where it shows up in a product. Hover a layer — related work lights up.</p>
         </div>
-        <div class="sys-grid" data-reveal>
+        <div class="sys-row" data-reveal>
           ${systems
             .map(
               (col) => `
-            <div class="sys-col">
+            <button class="sys" type="button" data-techs="${esc(col.techs.join(","))}">
               <h3>${esc(col.layer)}</h3>
-              ${col.items
-                .map(
-                  (item) =>
-                    `<button class="chip" type="button" data-tech="${esc(item.id)}">${esc(item.label)}</button>`
-                )
-                .join("")}
-            </div>`
+              <p>${esc(col.line)}</p>
+            </button>`
             )
             .join("")}
         </div>
-        <p class="related" id="related">Hover a technology to see where it ships.</p>
+        <p class="related" id="related">Select a layer to see where it ships.</p>
 
         <div class="map" data-reveal>
           <p class="kicker">How a job actually moves</p>
-          <div class="map-track">
-            ${mapLayers
-              .map(
-                (n, i) => `
-              <button class="node${i === 0 ? " is-on" : ""}" type="button" data-hint="${esc(n.hint)}">
-                <i></i>
-                <b>${esc(n.label)}</b>
-                <span>${esc(n.hint)}</span>
-              </button>`
-              )
-              .join("")}
-          </div>
+          ${mapSvg()}
           <p class="map-note" id="map-note">${esc(mapLayers[0].hint)}</p>
         </div>
       </section>

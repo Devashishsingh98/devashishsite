@@ -24,6 +24,16 @@ export function initMotion() {
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
+  const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+  intro
+    .from(".nav", { y: -16, opacity: 0, duration: 0.9 }, 0)
+    .fromTo(
+      ".hero-copy [data-in]",
+      { y: 36, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.05, stagger: 0.12 },
+      0.15
+    );
+
   gsap.utils.toArray("[data-reveal]").forEach((el) => {
     gsap.fromTo(
       el,

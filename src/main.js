@@ -23,6 +23,10 @@ if (!reduce) {
     .catch(() => document.body.classList.add("no-webgl"));
 } else {
   document.getElementById("webgl")?.remove();
+  document.querySelectorAll("[data-in]").forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
+  });
 }
 
 document.body.classList.add("is-ready");

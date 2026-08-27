@@ -4,149 +4,150 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 const CYAN = 0x62e6ff;
 const VOID = 0x050608;
 
-function mobile() {
+function isMobile() {
   return window.matchMedia("(max-width: 980px)").matches;
 }
 
+function metalMat() {
+  return new THREE.MeshPhysicalMaterial({
+    color: 0x1a212b,
+    metalness: 0.92,
+    roughness: 0.32,
+    clearcoat: 0.4,
+    clearcoatRoughness: 0.35,
+    envMapIntensity: 0.9,
+  });
+}
+
 export async function createEngine(canvas) {
+  const mobile = isMobile();
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    antialias: !mobile(),
+    antialias: !mobile,
     alpha: true,
     powerPreference: "high-performance",
   });
   renderer.setClearColor(VOID, 0);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile() ? 1.15 : 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.1 : 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.92;
+  renderer.toneMappingExposure = 0.88;
 
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.06).texture;
-  scene.fog = new THREE.FogExp2(VOID, 0.045);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  scene.fog = new THREE.FogExp2(VOID, 0.038);
 
-  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 60);
-  camera.position.set(0.35, 0.12, 8.4);
+  const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 80);
+  camera.position.set(0.2, 0.05, 9.2);
 
-  const artifact = new THREE.Group();
-  artifact.position.set(mobile() ? 0 : 1.35, 0.05, 0);
-  scene.add(artifact);
+  const root = new THREE.Group();
+  root.position.set(mobile ? 0.15 : 2.15, mobile ? 0.55 : 0.15, 0);
+  scene.add(root);
 
-  const metal = new THREE.MeshPhysicalMaterial({
-    color: 0x161b22,
-    metalness: 0.86,
-    roughness: 0.28,
-    clearcoat: 0.55,
-    clearcoatRoughness: 0.25,
-    envMapIntensity: 0.8,
-  });
+  const gimbals = new THREE.Group();
+  root.add(gimbals);
 
-  const glass = new THREE.MeshPhysicalMaterial({
-    color: 0x0c1218,
-    metalness: 0.1,
-    roughness: 0.08,
-    transmission: 0.55,
-    thickness: 1.2,
+  const metal = metalMat();
+  const dark = new THREE.MeshPhysicalMaterial({
+    color: 0x0c1016,
+    metalness: 0.55,
+    roughness: 0.12,
+    transmission: 0.42,
+    thickness: 1.4,
     transparent: true,
-    opacity: 0.85,
-    ior: 1.35,
-    envMapIntensity: 1,
+    opacity: 0.92,
+    ior: 1.4,
+    envMapIntensity: 1.1,
   });
 
-  const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(1.55, 0), glass);
-  artifact.add(shell);
+  const rings = [
+    { r: 1.55, t: 0.028, rot: [Math.PI / 2, 0, 0], spin: [0.003, 0, 0] },
+    { r: 1.82, t: 0.016, rot: [Math.PI / 2.8, 0.4, 0.2], spin: [0, 0.0024, 0] },
+    { r: 2.12, t: 0.012, rot: [0.35, Math.PI / 2.2, 0.15], spin: [0, 0, 0.0018] },
+  ].map((cfg) => {
+    const mesh = new THREE.Mesh(new THREE.TorusGeometry(cfg.r, cfg.t, 14, 128), metal);
+    mesh.rotation.set(...cfg.rot);
+    mesh.userData.spin = cfg.spin;
+    gimbals.add(mesh);
+    return mesh;
+  });
 
-  const frame = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(1.56, 0),
-    new THREE.MeshBasicMaterial({
-      color: 0x2a3340,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.55,
-    })
-  );
-  artifact.add(frame);
-
-  const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(1.95, 0.018, 12, 96),
-    metal
-  );
-  ring.rotation.x = Math.PI / 2.4;
-  artifact.add(ring);
-
-  const ring2 = new THREE.Mesh(
-    new THREE.TorusGeometry(2.25, 0.01, 8, 80),
-    new THREE.MeshBasicMaterial({
-      color: CYAN,
-      transparent: true,
-      opacity: 0.18,
-    })
-  );
-  ring2.rotation.x = Math.PI / 1.7;
-  artifact.add(ring2);
+  const vessel = new THREE.Mesh(new THREE.DodecahedronGeometry(0.72, 0), dark);
+  root.add(vessel);
 
   const core = new THREE.Mesh(
-    new THREE.OctahedronGeometry(0.38, 0),
+    new THREE.OctahedronGeometry(0.22, 0),
     new THREE.MeshStandardMaterial({
       color: 0x041018,
       emissive: new THREE.Color(CYAN),
-      emissiveIntensity: 0.85,
-      metalness: 0.4,
-      roughness: 0.3,
+      emissiveIntensity: 0.55,
+      roughness: 0.25,
+      metalness: 0.5,
     })
   );
-  artifact.add(core);
+  root.add(core);
 
-  const count = mobile() ? 16 : 28;
+  const strutMat = metalMat();
+  for (let i = 0; i < 6; i++) {
+    const strut = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.01, 1.42, 6), strutMat);
+    const phi = (i / 6) * Math.PI * 2;
+    strut.position.set(Math.cos(phi) * 0.72, Math.sin(phi) * 0.18, Math.sin(phi) * 0.72);
+    strut.lookAt(0, 0, 0);
+    strut.rotateX(Math.PI / 2);
+    root.add(strut);
+  }
+
+  const nodeCount = mobile ? 10 : 18;
   const pts = [];
   const pos = [];
-  for (let i = 0; i < count; i++) {
-    const v = new THREE.Vector3().randomDirection().multiplyScalar(2.15);
+  for (let i = 0; i < nodeCount; i++) {
+    const v = new THREE.Vector3().randomDirection().multiplyScalar(1.35 + Math.random() * 0.45);
     pts.push(v);
     pos.push(v.x, v.y, v.z);
   }
-  artifact.add(
-    new THREE.Points(
-      new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)),
-      new THREE.PointsMaterial({
-        color: CYAN,
-        size: 0.028,
-        transparent: true,
-        opacity: 0.7,
-        sizeAttenuation: true,
-      })
-    )
+  const nodes = new THREE.Points(
+    new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)),
+    new THREE.PointsMaterial({
+      color: CYAN,
+      size: 0.022,
+      transparent: true,
+      opacity: 0.55,
+      sizeAttenuation: true,
+    })
   );
+  root.add(nodes);
 
   const segs = [];
   for (let i = 0; i < pts.length; i++) {
     for (let j = i + 1; j < pts.length; j++) {
-      if (pts[i].distanceTo(pts[j]) < 1.55) {
+      if (pts[i].distanceTo(pts[j]) < 1.15) {
         segs.push(pts[i].x, pts[i].y, pts[i].z, pts[j].x, pts[j].y, pts[j].z);
       }
     }
   }
-  artifact.add(
-    new THREE.LineSegments(
-      new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(segs, 3)),
-      new THREE.LineBasicMaterial({ color: 0x62e6ff, transparent: true, opacity: 0.12 })
-    )
+  const veins = new THREE.LineSegments(
+    new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(segs, 3)),
+    new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.1 })
   );
+  root.add(veins);
 
-  scene.add(new THREE.AmbientLight(0x6b7380, 0.35));
-  const key = new THREE.PointLight(CYAN, 10, 18);
-  key.position.set(4.2, 2.4, 5);
+  scene.add(new THREE.AmbientLight(0x5b6370, 0.22));
+  const key = new THREE.DirectionalLight(0xf3f1ea, 0.55);
+  key.position.set(-4, 6, 5);
   scene.add(key);
-  const fill = new THREE.PointLight(0x8d7cff, 4.5, 16);
-  fill.position.set(-4, -1.2, 3.2);
-  scene.add(fill);
-  const rim = new THREE.DirectionalLight(0xf3f1ea, 0.35);
-  rim.position.set(-2, 4, -3);
+  const rim = new THREE.PointLight(CYAN, 6.5, 16);
+  rim.position.set(5, 1.2, 3);
   scene.add(rim);
+  const fill = new THREE.PointLight(0x8d7cff, 2.2, 14);
+  fill.position.set(-3.5, -2, 2);
+  scene.add(fill);
+  const interior = new THREE.PointLight(CYAN, 3.2, 4);
+  interior.position.set(0, 0, 0);
+  root.add(interior);
 
   const mouse = { x: 0, y: 0 };
-  const target = { x: 0, y: 0 };
+  const look = { x: 0, y: 0 };
   const onMove = (e) => {
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
@@ -159,7 +160,6 @@ export async function createEngine(canvas) {
     renderer.setSize(w, h, false);
     camera.aspect = w / Math.max(h, 1);
     camera.updateProjectionMatrix();
-    artifact.position.x = mobile() ? 0 : 1.35;
   };
   setSize();
   window.addEventListener("resize", setSize);
@@ -167,30 +167,56 @@ export async function createEngine(canvas) {
   const clock = new THREE.Clock();
   let raf = 0;
   let live = true;
-  let scroll = 0;
+  let intro = 0;
+
+  function range(id) {
+    const el = document.getElementById(id);
+    if (!el) return 0;
+    const r = el.getBoundingClientRect();
+    const h = window.innerHeight;
+    const start = h * 0.9;
+    const end = h * 0.12;
+    if (r.top > start) return 0;
+    if (r.top < end) return 1;
+    return (start - r.top) / (start - end);
+  }
 
   const tick = () => {
     if (!live) return;
     const t = clock.getElapsedTime();
-    target.x += (mouse.x - target.x) * 0.04;
-    target.y += (mouse.y - target.y) * 0.04;
-    const s = window.scrollY || 0;
-    scroll += (s - scroll) * 0.06;
-    const progress = Math.min(scroll / (window.innerHeight * 1.8), 1);
+    intro = Math.min(1, intro + 0.012);
+    look.x += (mouse.x - look.x) * 0.035;
+    look.y += (mouse.y - look.y) * 0.035;
 
-    artifact.rotation.y = t * 0.08 + target.x * 0.35;
-    artifact.rotation.x = 0.16 + target.y * 0.2 + progress * 0.6;
-    ring.rotation.z = t * 0.12;
-    ring2.rotation.z = -t * 0.08;
-    core.rotation.y = t * 0.35;
-    shell.rotation.y = t * 0.03;
+    const flatten = range("capabilities");
+    const recede = Math.max(range("work") * 0.55, range("contact"));
 
-    camera.position.x = 0.35 + target.x * 0.28;
-    camera.position.y = 0.12 - target.y * 0.18 + progress * 0.4;
-    camera.position.z = 8.4 - progress * 1.6;
-    camera.lookAt(artifact.position.x * 0.4, 0, 0);
+    root.position.x = (mobile ? 0.15 : 2.15) - flatten * 1.4 - recede * 0.4;
+    root.position.y = (mobile ? 0.55 : 0.15) + flatten * 0.2;
+    root.scale.setScalar(0.86 + intro * 0.14 - recede * 0.12);
 
-    renderer.domElement.style.opacity = String(1 - progress * 0.55);
+    gimbals.rotation.y = t * 0.06 + look.x * 0.32;
+    gimbals.rotation.x = 0.22 + look.y * 0.18 + flatten * 0.9;
+    rings.forEach((ring, i) => {
+      const [sx, sy, sz] = ring.userData.spin;
+      ring.rotation.x += sx;
+      ring.rotation.y += sy;
+      ring.rotation.z += sz;
+      ring.scale.setScalar(1 + flatten * (0.18 + i * 0.08));
+    });
+    vessel.rotation.y = t * 0.04;
+    core.rotation.y = -t * 0.25;
+    core.rotation.z = t * 0.12;
+    veins.material.opacity = 0.08 + Math.sin(t * 0.7) * 0.04 + flatten * 0.08;
+
+    camera.position.x = 0.2 + look.x * 0.22 - flatten * 0.3;
+    camera.position.y = 0.05 - look.y * 0.16 + flatten * 1.1;
+    camera.position.z = 9.2 - flatten * 1.4 + recede * 1.2;
+    camera.lookAt(root.position.x * 0.25, root.position.y * 0.2, 0);
+
+    renderer.domElement.style.opacity = String(
+      (mobile ? 0.38 : 1) * (0.15 + intro * 0.85) * (1 - recede * 0.75)
+    );
     renderer.render(scene, camera);
     raf = requestAnimationFrame(tick);
   };
@@ -202,12 +228,14 @@ export async function createEngine(canvas) {
   document.addEventListener("visibilitychange", vis);
   raf = requestAnimationFrame(tick);
 
-  return () => {
-    live = false;
-    cancelAnimationFrame(raf);
-    window.removeEventListener("pointermove", onMove);
-    window.removeEventListener("resize", setSize);
-    document.removeEventListener("visibilitychange", vis);
-    renderer.dispose();
+  return {
+    destroy() {
+      live = false;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("resize", setSize);
+      document.removeEventListener("visibilitychange", vis);
+      renderer.dispose();
+    },
   };
 }

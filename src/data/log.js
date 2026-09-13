@@ -1,0 +1,115 @@
+export const operator = {
+  name: "Devashish Singh",
+  stamp: "SINGH",
+  city: "Bhilai, Chhattisgarh",
+  plant: "Steel city · BIT Raipur",
+  github: "https://github.com/Devashishsingh98",
+  upwork: "https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a",
+  x: "https://x.com/devashishsin98",
+  site: "https://www.devashish98.xyz",
+};
+
+export const bays = [
+  { id: "gate", time: "23:00", label: "In" },
+  { id: "job-1", time: "23:14", label: "Lens" },
+  { id: "job-2", time: "01:40", label: "Wire" },
+  { id: "job-3", time: "03:05", label: "Desk" },
+  { id: "job-4", time: "04:50", label: "Iron" },
+  { id: "file", time: "FILE", label: "File" },
+  { id: "out", time: "07:00", label: "Out" },
+];
+
+export const jobs = [
+  {
+    id: "job-1",
+    time: "23:14",
+    ticket: "N-014",
+    incoming: "A paper that will not explain itself.",
+    title: "PDF Lens",
+    body: "You highlight one sentence. The answer stays on the page. Teach, example, code — nested, not a chatbot in another tab.",
+    still: "/media/pdf-lens-home.jpg",
+    stillAlt: "PDF Lens with a paper open and an answer beside the highlight",
+    tags: ["React", "Express", "pdf.js", "local embeddings"],
+    href: "https://github.com/Devashishsingh98/pdf-lens",
+    hrefLabel: "On the floor",
+  },
+  {
+    id: "job-2",
+    time: "01:40",
+    ticket: "N-027",
+    incoming: "Telegram will not stop talking. A human should not read this at 2am.",
+    title: "Job wire",
+    body: "Posts come in dirty. Facts come out clean. If it matches, a message leaves. Every fifteen minutes. A small admin screen, because someone has to watch the line.",
+    still: null,
+    tags: ["FastAPI", "Celery", "Redis", "Telethon", "Gemini"],
+    href: "https://github.com/Devashishsingh98/jobNotificationExtractor",
+    hrefLabel: "On the floor",
+  },
+  {
+    id: "job-3",
+    time: "03:05",
+    ticket: "N-033",
+    incoming: "A student still awake. The paragraph is the whole world.",
+    title: "StudyHelper",
+    body: "Highlight. Pick a point of view. The answer sits in the same panel. Follow-ups do not throw you out. If the page is a photograph of text, it still reads.",
+    still: null,
+    tags: ["React", "FastAPI", "SSE", "Tesseract"],
+    href: "https://github.com/Devashishsingh98/studyhelper",
+    hrefLabel: "On the floor",
+  },
+  {
+    id: "job-4",
+    time: "04:50",
+    ticket: "N-004",
+    incoming: "Older iron. Still holds weight.",
+    title: "Shop & night chat",
+    body: "Login. Cart. A room that talks back. Not a landing page. The kind of thing a shop actually needs after the brochure is done.",
+    still: null,
+    tags: ["Express", "Django", "Channels", "Redis"],
+    href: "https://github.com/Devashishsingh98/ecommerce",
+    href2: "https://github.com/Devashishsingh98/RealTimeChatRoom",
+    hrefLabel: "Shop",
+    href2Label: "Chat",
+  },
+];
+
+export const file = {
+  lines: [
+    ["Name", "Devashish Singh"],
+    ["Station", "Bhilai, Chhattisgarh · IST"],
+    ["School", "Bhilai Institute of Technology, Raipur"],
+    ["Hands", "Python · JavaScript · AWS · Flask · Linux · APIs"],
+    ["Years", "Five. Mostly the unglamorous parts."],
+    ["Window", "US morning. Thirty hours. A few jobs, not a crowd."],
+    ["Rate", "$1,500–$4,000 fixed · $60–$80 if it cannot be fixed"],
+    ["Hold", "Half in Upwork escrow. You keep the site and the code."],
+  ],
+  take: "A product that has to exist in a week. Chat on your files. A dashboard. A wire that sorts the night.",
+  leave: "Button-clicking in someone else's tool. A $100 page. Unpaid trials. A six-month hire.",
+};
+
+export const githubSkip = new Set([
+  "skills",
+  "scrapy",
+  "contributor_covenant",
+  "codingblocks.online.projectx",
+  "yourfirstpr.github.io",
+  "candy",
+  "stopwatch",
+  "Guess-The-color",
+  "scoreregister",
+  "project",
+  "Devashishsingh98",
+  "TODO",
+  "Attendance",
+  "animo",
+  "TextUtils",
+  "Todo-List",
+  "moviecompare",
+  "messageshare",
+  "Blog_site",
+]);
+
+export const githubFeatured = new Set(
+  jobs.flatMap((j) => [j.href, j.href2].filter(Boolean).map((h) => h.split("/").pop()))
+);

@@ -19,13 +19,13 @@ Hourly only if you need it: $60–$80.
 
 Portfolio: https://www.devashish98.xyz
 GitHub: https://github.com/Devashishsingh98
-Flagship: https://github.com/Devashishsingh98/pdf-lens
+Flagship: https://pdflens.in
 ```
 
 ## Portfolio items
 
 1. **PDF Lens** — AI reading workspace for PDFs (highlight → explain / teach / code).  
-   URL: https://github.com/Devashishsingh98/pdf-lens  
+   URL: https://pdflens.in  
    Screenshot: site `/assets/pdf-lens-workspace.jpg`
 
 2. **Job notification extractor** — Telegram scrape → Gemini parse → eligibility match → notify.  

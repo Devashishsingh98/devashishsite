@@ -1,14 +1,13 @@
-# Devashish Singh — site
+# Singh — night shift
 
-Cinematic engineering portfolio. Vite + Three.js + GSAP + Lenis.
+Not a portfolio. A mill you walk after dark.
 
 ```
-src/data/site.js     factual content (single source)
-src/app.js           page composition
-src/scene/engine.js  one 3D artifact
-src/motion/smooth.js Lenis + ScrollTrigger
-src/ui/              interactions, GitHub
-src/styles/main.css  identity
+src/data/log.js   facts
+src/mill.js       the floor
+src/walk.js       the walk
+src/lamp.js       the hanging sodium lamp
+src/styles/mill.css
 ```
 
 ```

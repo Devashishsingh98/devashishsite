@@ -1,4 +1,4 @@
-import { githubFeatured, githubSkip, profile } from "../data/site.js";
+import { githubFeatured, githubSkip, operator } from "./data/log.js";
 
 function score(repo) {
   let n = 0;
@@ -31,15 +31,10 @@ export async function mountGithub(root) {
       .sort((a, b) => score(b) - score(a))
       .slice(0, 3);
 
-    const count = user?.public_repos ? `${user.public_repos} public projects` : "Public projects";
-    const extras = extra
-      .map((r) => `<a href="${r.html_url}">${r.name}</a>`)
-      .join(" · ");
-
-    root.innerHTML =
-      `<a href="${profile.github}">${count} on GitHub</a>` +
-      (extras ? ` · also ${extras}` : "");
+    const count = user?.public_repos ? `${user.public_repos} public jobs on GitHub` : "Public jobs on GitHub";
+    const extras = extra.map((r) => `<a href="${r.html_url}">${r.name}</a>`).join(" · ");
+    root.innerHTML = `<a href="${operator.github}">${count}</a>` + (extras ? ` · also ${extras}` : "");
   } catch {
-    root.innerHTML = `<a href="${profile.github}">GitHub</a>`;
+    root.innerHTML = `<a href="${operator.github}">GitHub</a>`;
   }
 }

@@ -1,32 +1,29 @@
-import "./styles/main.css";
-import { render } from "./app.js";
-import { bindMagnetic, bindMap, bindSystems } from "./ui/bind.js";
-import { mountGithub } from "./ui/github.js";
+import { inject } from "@vercel/analytics";
+import "./styles/mill.css";
+import { mill } from "./mill.js";
+import { mountGithub } from "./github.js";
+import { steam } from "./steam.js";
+import { walk } from "./walk.js";
+import { startDesk } from "./desk.js";
 
-const root = document.getElementById("app");
-root.innerHTML = render();
-
-bindSystems();
-bindMap();
-bindMagnetic();
-mountGithub(document.getElementById("gh-line"));
+document.getElementById("mill").innerHTML = mill();
+steam(document.getElementById("steam"));
+mountGithub(document.getElementById("gh"));
+startDesk(document.getElementById("desk"));
+walk();
 
 const reduce =
   window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
   Boolean(navigator.connection && navigator.connection.saveData);
 
-import("./motion/smooth.js").then((m) => m.initMotion());
-
 if (!reduce) {
-  import("./scene/engine.js")
-    .then((m) => m.createEngine(document.getElementById("webgl")))
-    .catch(() => document.body.classList.add("no-webgl"));
+  import("./lamp.js")
+    .then((m) => m.lamp(document.getElementById("lamp")))
+    .catch(() => {});
 } else {
-  document.getElementById("webgl")?.remove();
-  document.querySelectorAll("[data-in]").forEach((el) => {
-    el.style.opacity = "1";
-    el.style.transform = "none";
-  });
+  document.getElementById("lamp")?.remove();
+  document.getElementById("veil")?.classList.add("is-off");
 }
 
-document.body.classList.add("is-ready");
+document.body.classList.add("is-on");
+inject();

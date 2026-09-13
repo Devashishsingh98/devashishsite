@@ -10,8 +10,11 @@ function esc(s) {
 
 function jobBay(job) {
   const still = job.still
-    ? `<figure class="still"><img src="${esc(job.still)}" alt="${esc(job.stillAlt || job.title)}" loading="lazy" /></figure>`
+    ? `<figure class="still still--shot"><img src="${esc(job.still)}" alt="${esc(job.stillAlt || job.title)}" loading="lazy" /></figure>`
     : `<figure class="still still--blank"><span>${esc(job.ticket)}</span></figure>`;
+  const stillLinked = job.href
+    ? `<a class="still-link" href="${esc(job.href)}" rel="noreferrer">${still}</a>`
+    : still;
   const extra = job.href2
     ? `<a class="mark" href="${esc(job.href2)}">${esc(job.href2Label)}</a>`
     : "";
@@ -19,7 +22,7 @@ function jobBay(job) {
     <section class="bay bay-job" id="${esc(job.id)}" data-time="${esc(job.time)}">
       <div class="bay-rail" aria-hidden="true">${esc(job.time)}</div>
       <p class="incoming">${esc(job.incoming)}</p>
-      ${still}
+      ${stillLinked}
       <div class="job">
         <p class="ticket">${esc(job.ticket)}</p>
         <h2>${esc(job.title)}</h2>

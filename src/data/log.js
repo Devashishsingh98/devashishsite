@@ -27,11 +27,11 @@ export const jobs = [
     incoming: "A paper that will not explain itself.",
     title: "PDF Lens",
     body: "You highlight one sentence. The answer stays on the page. Teach, example, code — nested, not a chatbot in another tab.",
-    still: "/media/pdf-lens-home.jpg",
-    stillAlt: "PDF Lens with a paper open and an answer beside the highlight",
+    still: "/media/pdf-lens-teach.png",
+    stillAlt: "PDF Lens teach lens: highlight a sentence and get a nested explanation beside the page",
     tags: ["React", "Express", "pdf.js", "local embeddings"],
-    href: "https://github.com/Devashishsingh98/pdf-lens",
-    hrefLabel: "On the floor",
+    href: "https://pdflens.in",
+    hrefLabel: "Open pdflens.in",
   },
   {
     id: "job-2",
@@ -110,6 +110,7 @@ export const githubSkip = new Set([
   "Blog_site",
 ]);
 
-export const githubFeatured = new Set(
-  jobs.flatMap((j) => [j.href, j.href2].filter(Boolean).map((h) => h.split("/").pop()))
-);
+export const githubFeatured = new Set([
+  "pdf-lens",
+  ...jobs.flatMap((j) => [j.href, j.href2].filter(Boolean).map((h) => h.split("/").pop())),
+]);

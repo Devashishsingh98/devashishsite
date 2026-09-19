@@ -1,4 +1,4 @@
-import { bays, file, jobs, operator } from "./data/log.js";
+import { bays, bench, file, jobs, operator } from "./data/log.js";
 
 function esc(s) {
   return String(s)
@@ -9,8 +9,9 @@ function esc(s) {
 }
 
 function jobBay(job) {
+  const kind = job.stillKind === "page" ? "still still--page" : "still still--shot";
   const still = job.still
-    ? `<figure class="still still--shot"><img src="${esc(job.still)}" alt="${esc(job.stillAlt || job.title)}" loading="lazy" /></figure>`
+    ? `<figure class="${kind}"><img src="${esc(job.still)}" alt="${esc(job.stillAlt || job.title)}" loading="lazy" /></figure>`
     : `<figure class="still still--blank"><span>${esc(job.ticket)}</span></figure>`;
   const stillLinked = job.href
     ? `<a class="still-link" href="${esc(job.href)}" rel="noreferrer">${still}</a>`
@@ -18,6 +19,7 @@ function jobBay(job) {
   const extra = job.href2
     ? `<a class="mark" href="${esc(job.href2)}">${esc(job.href2Label)}</a>`
     : "";
+  const status = job.status ? `<p class="job-status">${esc(job.status)}</p>` : "";
   return `
     <section class="bay bay-job" id="${esc(job.id)}" data-time="${esc(job.time)}">
       <div class="bay-rail" aria-hidden="true">${esc(job.time)}</div>
@@ -26,10 +28,11 @@ function jobBay(job) {
       <div class="job">
         <p class="ticket">${esc(job.ticket)}</p>
         <h2>${esc(job.title)}</h2>
+        ${status}
         <p class="body">${esc(job.body)}</p>
         <ul class="tags">${job.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
         <div class="marks">
-          <a class="mark" href="${esc(job.href)}">${esc(job.hrefLabel)}</a>
+          <a class="mark" href="${esc(job.href)}" rel="noreferrer">${esc(job.hrefLabel)}</a>
           ${extra}
         </div>
       </div>
@@ -86,6 +89,17 @@ export function mill() {
           <dl class="sheet">
             ${file.lines.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}
           </dl>
+          <div class="cribs" aria-label="Skills">
+            ${bench
+              .map(
+                (c) => `
+              <div class="crib">
+                <p class="ticket">${esc(c.crib)}</p>
+                <ul class="tags">${c.tools.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+              </div>`
+              )
+              .join("")}
+          </div>
           <div class="two">
             <p><strong>Take the job</strong>${esc(file.take)}</p>
             <p><strong>Leave it</strong>${esc(file.leave)}</p>

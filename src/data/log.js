@@ -11,10 +11,10 @@ export const operator = {
 
 export const bays = [
   { id: "gate", time: "23:00", label: "In" },
-  { id: "job-1", time: "23:14", label: "Lens" },
-  { id: "job-2", time: "01:40", label: "Wire" },
-  { id: "job-3", time: "03:05", label: "Desk" },
-  { id: "job-4", time: "04:50", label: "Iron" },
+  { id: "job-1", time: "23:14", label: "Clinic" },
+  { id: "job-2", time: "00:40", label: "Lens" },
+  { id: "job-3", time: "02:10", label: "Wire" },
+  { id: "job-4", time: "04:05", label: "Desk" },
   { id: "file", time: "FILE", label: "File" },
   { id: "out", time: "07:00", label: "Out" },
 ];
@@ -23,19 +23,34 @@ export const jobs = [
   {
     id: "job-1",
     time: "23:14",
-    ticket: "N-014",
-    incoming: "A paper that will not explain itself.",
-    title: "PDF Lens",
-    body: "You highlight one sentence. The answer stays on the page. Teach, example, code — nested, not a chatbot in another tab.",
-    still: "/media/pdf-lens-teach.png",
-    stillAlt: "PDF Lens teach lens: highlight a sentence and get a nested explanation beside the page",
-    tags: ["React", "Express", "pdf.js", "local embeddings"],
-    href: "https://pdflens.in",
-    hrefLabel: "Open pdflens.in",
+    ticket: "N-041",
+    incoming: "A dentist needed a site patients could actually read.",
+    title: "doctorashishasingh.com",
+    body: "Live clinic site, shipped. Next.js on Vercel. Plain language, maps, contact, specialist training made obvious. Not a template with stock teeth.",
+    still: "/media/doctor-ashisha.jpg",
+    stillAlt: "Live homepage for Dr. Ashisha Singh, dentist in Rajnandgaon",
+    stillKind: "page",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
+    href: "https://doctorashishasingh.com",
+    hrefLabel: "Open live site",
   },
   {
     id: "job-2",
-    time: "01:40",
+    time: "00:40",
+    ticket: "N-014 · TEST",
+    incoming: "A paper that will not explain itself.",
+    title: "PDF Lens",
+    body: "Highlight one sentence. The answer stays on the page. Teach, example, code. Nested, not a chatbot in another tab. Repo is private. App is under testing.",
+    still: "/media/pdf-lens-teach.png",
+    stillAlt: "PDF Lens teach lens: highlight a sentence and get a nested explanation beside the page",
+    tags: ["React", "Express", "pdf.js", "RAG", "local embeddings"],
+    href: "https://pdflens.in",
+    hrefLabel: "Under testing",
+    status: "Under testing",
+  },
+  {
+    id: "job-3",
+    time: "02:10",
     ticket: "N-027",
     incoming: "Telegram will not stop talking. A human should not read this at 2am.",
     title: "Job wire",
@@ -46,8 +61,8 @@ export const jobs = [
     hrefLabel: "On the floor",
   },
   {
-    id: "job-3",
-    time: "03:05",
+    id: "job-4",
+    time: "04:05",
     ticket: "N-033",
     incoming: "A student still awake. The paragraph is the whole world.",
     title: "StudyHelper",
@@ -57,19 +72,28 @@ export const jobs = [
     href: "https://github.com/Devashishsingh98/studyhelper",
     hrefLabel: "On the floor",
   },
+];
+
+export const bench = [
   {
-    id: "job-4",
-    time: "04:50",
-    ticket: "N-004",
-    incoming: "Older iron. Still holds weight.",
-    title: "Shop & night chat",
-    body: "Login. Cart. A room that talks back. Not a landing page. The kind of thing a shop actually needs after the brochure is done.",
-    still: null,
-    tags: ["Express", "Django", "Channels", "Redis"],
-    href: "https://github.com/Devashishsingh98/ecommerce",
-    href2: "https://github.com/Devashishsingh98/RealTimeChatRoom",
-    hrefLabel: "Shop",
-    href2Label: "Chat",
+    crib: "Ship",
+    tools: ["Next.js", "React", "TypeScript", "Node", "Vite", "Tailwind", "HTML", "CSS"],
+  },
+  {
+    crib: "AI",
+    tools: ["RAG", "Agents", "OpenAI", "Gemini", "Embeddings", "Streaming", "Prompting"],
+  },
+  {
+    crib: "Python",
+    tools: ["FastAPI", "Flask", "Django", "Celery", "Scrapy", "Automation"],
+  },
+  {
+    crib: "Ops",
+    tools: ["AWS", "Vercel", "Linux", "Nginx", "Docker", "Git", "CI/CD"],
+  },
+  {
+    crib: "Data",
+    tools: ["Postgres", "MySQL", "Redis", "Supabase", "REST APIs", "System design"],
   },
 ];
 
@@ -77,14 +101,13 @@ export const file = {
   lines: [
     ["Name", "Devashish Singh"],
     ["Station", "Bhilai, Chhattisgarh · IST"],
-    ["School", "Bhilai Institute of Technology, Raipur"],
-    ["Hands", "Python · JavaScript · AWS · Flask · Linux · APIs"],
+    ["School", "Bhilai Institute of Technology, Raipur · CSE"],
     ["Years", "Five. Mostly the unglamorous parts."],
     ["Window", "US morning. Thirty hours. A few jobs, not a crowd."],
     ["Rate", "$1,500–$4,000 fixed · $60–$80 if it cannot be fixed"],
     ["Hold", "Half in Upwork escrow. You keep the site and the code."],
   ],
-  take: "A product that has to exist in a week. Chat on your files. A dashboard. A wire that sorts the night.",
+  take: "A product that has to exist in a week. A real client site. Chat on your files. A wire that sorts the night.",
   leave: "Button-clicking in someone else's tool. A $100 page. Unpaid trials. A six-month hire.",
 };
 
@@ -108,6 +131,8 @@ export const githubSkip = new Set([
   "moviecompare",
   "messageshare",
   "Blog_site",
+  "ecommerce",
+  "RealTimeChatRoom",
 ]);
 
 export const githubFeatured = new Set([

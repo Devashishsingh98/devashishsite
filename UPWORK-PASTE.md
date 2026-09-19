@@ -11,29 +11,29 @@ Full-stack + AI — Next.js MVPs, RAG, agents | 7-day sprints
 ```
 I ship working web products in 7 days, not decks.
 
-Next.js, Node, React, Python. AI features: RAG over your docs, agents, chat on your data, dashboards.
+Next.js, Node, React, TypeScript, Python. AI features: RAG over your docs, agents, chat on your data, dashboards.
 You get a live URL and the repo.
 
 $1,500–$4,000 fixed. 50% escrow to start.
 Hourly only if you need it: $60–$80.
 
 Portfolio: https://www.devashish98.xyz
+Live client site: https://doctorashishasingh.com
 GitHub: https://github.com/Devashishsingh98
-Flagship: https://pdflens.in
+PDF Lens (under testing): https://pdflens.in
 ```
 
 ## Portfolio items
 
-1. **PDF Lens** — AI reading workspace for PDFs (highlight → explain / teach / code).  
-   URL: https://pdflens.in  
-   Screenshot: site `/assets/pdf-lens-workspace.jpg`
+1. **doctorashishasingh.com** — live Next.js clinic site.  
+   URL: https://doctorashishasingh.com
 
-2. **Job notification extractor** — Telegram scrape → Gemini parse → eligibility match → notify.  
+2. **PDF Lens** — AI reading workspace for PDFs. Under testing.  
+   URL: https://pdflens.in
+
+3. **Job notification extractor** — Telegram scrape, Gemini parse, eligibility match, notify.  
    URL: https://github.com/Devashishsingh98/jobNotificationExtractor
-
-3. **StudyHelper** — streaming AI over a PDF with follow-up lenses.  
-   URL: https://github.com/Devashishsingh98/studyhelper
 
 ## Skills
 
-JavaScript, TypeScript, React, Next.js, Node.js, Python, FastAPI, Chatbot, OpenAI / AI, RAG, REST API, HTML, CSS
+Next.js, React, TypeScript, Node.js, Python, FastAPI, Tailwind, RAG, AI agents, OpenAI, Gemini, AWS, Vercel, Postgres, MySQL, Redis, Docker, Linux, Nginx, Git, CI/CD, Scrapy, Flask, Django, REST API

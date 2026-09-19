@@ -14,7 +14,6 @@ export const bays = [
   { id: "job-1", time: "23:14", label: "Paper" },
   { id: "job-2", time: "00:20", label: "Clinic" },
   { id: "job-3", time: "01:50", label: "Lens" },
-  { id: "job-4", time: "03:40", label: "Wire" },
   { id: "file", time: "FILE", label: "File" },
   { id: "out", time: "07:00", label: "Out" },
 ];
@@ -80,24 +79,6 @@ export const jobs = [
       "RAG-style chat on the document. Repo is private while it is in testing",
     ],
   },
-  {
-    id: "job-4",
-    time: "03:40",
-    ticket: "N-027",
-    incoming: "Telegram will not stop talking. A human should not read this at 2am.",
-    title: "Job wire",
-    body: "Posts come in dirty. Facts come out clean. If it matches, a message leaves.",
-    still: null,
-    tags: ["FastAPI", "Celery", "Redis", "Telethon", "Gemini"],
-    href: "https://github.com/Devashishsingh98/jobNotificationExtractor",
-    hrefLabel: "On the floor",
-    did: [
-      "Scrape government job posts from Telegram every 15 minutes",
-      "Regex first, Gemini when the post is messy",
-      "Match age, category, education, state, then notify",
-      "React admin so someone can watch the line",
-    ],
-  },
 ];
 
 export const bench = [
@@ -133,7 +114,7 @@ export const file = {
     ["Rate", "$1,500–$4,000 fixed · $60–$80 if it cannot be fixed"],
     ["Hold", "Half in Upwork escrow. You keep the site and the code."],
   ],
-  take: "A product that has to exist in a week. A newspaper. A clinic site. Chat on your files. A wire that sorts the night.",
+  take: "A product that has to exist in a week. A newspaper. A clinic site. Chat on your files.",
   leave: "Button-clicking in someone else's tool. A $100 page. Unpaid trials. A six-month hire.",
 };
 
@@ -159,6 +140,8 @@ export const githubSkip = new Set([
   "Blog_site",
   "ecommerce",
   "RealTimeChatRoom",
+  "jobNotificationExtractor",
+  "studyhelper",
 ]);
 
 export const githubFeatured = new Set([

@@ -196,7 +196,7 @@ body.is-on { opacity: 1; }
   bottom: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid var(--line);
   background: rgba(10, 7, 4, 0.72);
   backdrop-filter: blur(12px);
@@ -558,7 +558,7 @@ a { color: inherit; }
     transform: none;
   }
   .strip {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
   .tab { padding: 12px 4px 14px; font-size: 0; }
   .tab em { font-size: 10px; margin: 0; }

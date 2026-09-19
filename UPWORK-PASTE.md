@@ -26,14 +26,14 @@ PDF Lens (under testing): https://pdflens.in
 
 ## Portfolio items
 
-1. **SAT PATH** — live Hindi newspaper: daily web desk, Thursday e-paper, Hindi/English, Razorpay.  
-   URL: https://satpath.in
-
-2. **doctorashishasingh.com** — live Next.js clinic site.  
+1. **doctorashishasingh.com** — live Next.js clinic site.  
    URL: https://doctorashishasingh.com
 
-3. **PDF Lens** — AI reading workspace for PDFs. Under testing.  
+2. **PDF Lens** — AI reading workspace for PDFs. Under testing.  
    URL: https://pdflens.in
+
+3. **SAT PATH** — live Hindi newspaper: daily web desk, Thursday e-paper, Hindi/English, Razorpay.  
+   URL: https://satpath.in
 
 ## Skills
 

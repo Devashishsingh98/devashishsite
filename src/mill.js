@@ -20,6 +20,9 @@ function jobBay(job) {
     ? `<a class="mark" href="${esc(job.href2)}">${esc(job.href2Label)}</a>`
     : "";
   const status = job.status ? `<p class="job-status">${esc(job.status)}</p>` : "";
+  const did = Array.isArray(job.did) && job.did.length
+    ? `<ul class="did">${job.did.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>`
+    : "";
   return `
     <section class="bay bay-job" id="${esc(job.id)}" data-time="${esc(job.time)}">
       <div class="bay-rail" aria-hidden="true">${esc(job.time)}</div>
@@ -30,6 +33,7 @@ function jobBay(job) {
         <h2>${esc(job.title)}</h2>
         ${status}
         <p class="body">${esc(job.body)}</p>
+        ${did}
         <ul class="tags">${job.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
         <div class="marks">
           <a class="mark" href="${esc(job.href)}" rel="noreferrer">${esc(job.hrefLabel)}</a>

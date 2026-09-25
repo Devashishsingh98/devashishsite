@@ -1,0 +1,1098 @@
+/* ==========================================================================
+   Devashish Singh — portfolio
+   Art direction: "cold ink, acid signal"
+   Display: Clash Display · Body: Satoshi · Data: JetBrains Mono
+   Theme is locked to one dark theme for the entire page. One accent only.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Self-hosted fonts
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-display-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-display-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* One theme, locked. Cold near-black base, bone text, acid signal. */
+  --ink: #0a0b0c;
+  --ink-2: #101215;
+  --ink-3: #16181c;
+  --bone: #f1f2ef;
+  --haze: #9aa0a6;
+  --dim: #8b9197;
+  --acid: #d8ff3e;
+
+  --line: color-mix(in oklab, var(--bone) 11%, transparent);
+  --line-soft: color-mix(in oklab, var(--bone) 7%, transparent);
+  --line-strong: color-mix(in oklab, var(--bone) 20%, transparent);
+
+  /* Radius lock: outer shell -> gap 8px -> inner core -> media */
+  --r-a: 22px;
+  --r-b: 14px;
+  --r-c: 10px;
+  --r-pill: 999px;
+
+  --f-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  --f-body: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-soft: cubic-bezier(0.4, 0.14, 0.3, 1);
+
+  --shell-pad: 8px;
+  --stick: 7rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+/* Lenis owns smooth scrolling; native smooth would fight it. */
+html.lenis,
+html.lenis body {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--f-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--acid);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.mono {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--dim);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: 0.8rem 1.2rem;
+  background: var(--acid);
+  color: var(--ink);
+  border-radius: var(--r-pill);
+  font-weight: 500;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Fixed chrome: scroll progress + film grain
+   -------------------------------------------------------------------------- */
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 95;
+  pointer-events: none;
+}
+.progress i {
+  display: block;
+  height: 100%;
+  background: var(--acid);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.032;
+  mix-blend-mode: screen;
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   5. Navigation: floating glass pill, detached from the viewport edge
+   -------------------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  inset: 1rem 0 auto;
+  z-index: 80;
+  display: flex;
+  justify-content: center;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+.nav__pill {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2.2vw, 2rem);
+  width: 100%;
+  max-width: 1180px;
+  padding: 0.42rem 0.42rem 0.42rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: color-mix(in oklab, var(--ink) 68%, transparent);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--bone) 7%, transparent),
+    0 26px 60px -34px rgba(0, 0, 0, 0.9);
+}
+
+.nav__mark {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  padding-block: 0.5rem;
+  line-height: 1.15;
+}
+.nav__mark b {
+  font-family: var(--f-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.nav__mark span {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* The pill gains material once the hero is behind it. */
+.nav.is-scrolled .nav__pill {
+  background: color-mix(in oklab, var(--ink) 86%, transparent);
+  border-color: var(--line-strong);
+}
+.nav__pill {
+  transition:
+    background-color 0.5s var(--ease),
+    border-color 0.5s var(--ease);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 1.8vw, 1.7rem);
+}
+.nav__links a {
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--haze);
+  padding-block: 0.7rem;
+  transition: color 0.4s var(--ease);
+}
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--acid);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.55s var(--ease);
+}
+.nav__links a:hover,
+.nav__links a.is-active {
+  color: var(--bone);
+}
+.nav__links a:hover::after,
+.nav__links a.is-active::after {
+  transform: scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   6. Buttons: pill, with a nested trailing icon orb
+   -------------------------------------------------------------------------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3rem;
+  padding: 0.45rem 0.5rem 0.45rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  font-family: var(--f-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.1;
+  white-space: nowrap;
+  transition:
+    transform 0.55s var(--ease),
+    background-color 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    color 0.4s var(--ease);
+}
+.btn--sm {
+  min-height: 2.6rem;
+  font-size: 0.875rem;
+  padding-left: 1rem;
+}
+.btn--lg {
+  min-height: 3.6rem;
+  font-size: 1rem;
+  padding-left: 1.5rem;
+}
+
+.btn--acid {
+  background: var(--acid);
+  color: var(--ink);
+}
+.btn--acid:hover {
+  transform: translateY(-2px);
+  background: color-mix(in oklab, var(--acid) 88%, white);
+}
+
+.btn--ghost {
+  color: var(--bone);
+  border-color: var(--line-strong);
+  background: color-mix(in oklab, var(--bone) 3%, transparent);
+}
+.btn--ghost:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--bone) 34%, transparent);
+  background: color-mix(in oklab, var(--bone) 6%, transparent);
+}
+
+.btn .orb {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: var(--r-pill);
+  font-size: 0.8rem;
+  line-height: 1;
+  transition:
+    transform 0.55s var(--ease),
+    background-color 0.4s var(--ease);
+}
+.btn--sm .orb {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+.btn--acid .orb {
+  background: color-mix(in oklab, var(--ink) 14%, transparent);
+}
+.btn--ghost .orb {
+  background: color-mix(in oklab, var(--bone) 8%, transparent);
+}
+.btn:hover .orb {
+  transform: translate(2px, -2px) scale(1.06);
+}
+
+/* --------------------------------------------------------------------------
+   7. Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-height: 100svh;
+  padding-block: clamp(6.5rem, 12vh, 8.25rem) clamp(2.5rem, 6vh, 4.5rem);
+  overflow: clip;
+}
+
+/* Light spill from the screens below, not a decorative mesh. */
+.hero__halo {
+  position: absolute;
+  z-index: 0;
+  top: 8%;
+  right: -6%;
+  width: min(760px, 62vw);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--acid) 9%, transparent) 0%,
+    transparent 62%
+  );
+  opacity: 0.7;
+}
+
+.hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  align-items: center;
+}
+
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acid);
+  opacity: 0.85;
+}
+
+.hero__title {
+  margin-top: clamp(1rem, 2.2vh, 1.6rem);
+  font-size: clamp(2.85rem, 7.1vw, 6.4rem);
+  line-height: 0.93;
+  letter-spacing: -0.035em;
+}
+/* Mask wrappers must not clip descenders. */
+.hero__title .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.hero__title .line > span {
+  display: block;
+}
+
+.hero__sub {
+  margin-top: clamp(1.1rem, 2.4vh, 1.8rem);
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--haze);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.6rem, 3.4vh, 2.5rem);
+}
+
+/* Cascade of live product plates: overlapping, lightly rotated */
+.cascade {
+  position: relative;
+  display: grid;
+  gap: clamp(0.6rem, 1.1vw, 1.05rem);
+}
+.cascade__item {
+  position: relative;
+}
+.cascade__item[data-cascade="0"] {
+  z-index: 3;
+  width: 78%;
+  justify-self: start;
+}
+.cascade__item[data-cascade="1"] {
+  z-index: 2;
+  width: 68%;
+  justify-self: end;
+  margin-top: calc(-1 * clamp(3rem, 6.5vw, 5.75rem));
+}
+.cascade__item[data-cascade="2"] {
+  z-index: 1;
+  width: 60%;
+  justify-self: start;
+  margin-top: calc(-1 * clamp(2rem, 4.8vw, 4.25rem));
+}
+.cascade__item[data-cascade="0"] .plate {
+  transform: rotate(-1.7deg);
+}
+.cascade__item[data-cascade="1"] .plate {
+  transform: rotate(1.4deg);
+}
+.cascade__item[data-cascade="2"] .plate {
+  transform: rotate(-1deg);
+}
+.cascade__cap {
+  margin-top: 0.7rem;
+  padding-left: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+}
+.cascade__cap em {
+  font-style: normal;
+  color: var(--acid);
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   8. Plates: a real shell, a gap, then the image
+   -------------------------------------------------------------------------- */
+.plate {
+  position: relative;
+  margin: 0;
+  padding: var(--shell-pad);
+  border: 1px solid var(--line);
+  border-radius: var(--r-a);
+  background: var(--ink-3);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--bone) 8%, transparent),
+    0 50px 90px -60px rgba(0, 0, 0, 0.95);
+}
+.plate img {
+  width: 100%;
+  border-radius: var(--r-b);
+  background: var(--ink-3);
+}
+.plate figcaption {
+  padding: 0.75rem 0.35rem 0.15rem;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  color: var(--dim);
+}
+.plate--hero img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* --------------------------------------------------------------------------
+   9. Section furniture
+   -------------------------------------------------------------------------- */
+.work,
+.cap,
+.stacksec,
+.process,
+.closing {
+  padding-block: clamp(6rem, 13vh, 10rem);
+}
+
+.h2 {
+  font-size: clamp(2.1rem, 4.5vw, 3.8rem);
+  line-height: 1;
+  max-width: 24ch;
+}
+.lead {
+  margin-top: clamp(1rem, 2vh, 1.5rem);
+  max-width: 60ch;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.62;
+  color: var(--haze);
+}
+
+/* --------------------------------------------------------------------------
+   10. Work: sticky stack of evidence cards
+   -------------------------------------------------------------------------- */
+.stack {
+  display: grid;
+  gap: clamp(1.5rem, 5vh, 4rem);
+  margin-top: clamp(2.5rem, 6vh, 4.5rem);
+}
+
+.card {
+  position: sticky;
+  top: var(--stick);
+  padding: var(--shell-pad);
+  border: 1px solid var(--line);
+  border-radius: var(--r-a);
+  background: var(--ink-3);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--bone) 8%, transparent),
+    0 60px 100px -60px rgba(0, 0, 0, 0.95);
+  will-change: transform;
+}
+.card__core {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+  padding: clamp(1.35rem, 2.4vw, 2.4rem);
+  border-radius: var(--r-b);
+  background: linear-gradient(
+    180deg,
+    var(--ink-2) 0%,
+    color-mix(in oklab, var(--ink-2) 82%, var(--ink)) 100%
+  );
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--bone) 6%, transparent);
+}
+
+.card__domain {
+  color: var(--acid);
+  opacity: 0.8;
+  letter-spacing: 0.08em;
+}
+.card__title {
+  margin-top: 0.5rem;
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+}
+.card__lede {
+  margin-top: 0.9rem;
+  max-width: 48ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--haze);
+}
+.card__label {
+  margin-top: clamp(1.2rem, 2.4vh, 1.8rem);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+
+.did {
+  display: grid;
+  gap: 0.42rem;
+}
+.did li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--bone) 88%, var(--haze));
+}
+.did li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 1px;
+  background: var(--acid);
+  opacity: 0.75;
+}
+.did .mono {
+  color: var(--haze);
+  font-size: 0.78rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: clamp(1.1rem, 2.2vh, 1.6rem);
+}
+.tags li {
+  padding: 0.42rem 0.62rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: color-mix(in oklab, var(--bone) 2.5%, transparent);
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: var(--haze);
+}
+
+.card .btn {
+  margin-top: clamp(1.2rem, 2.4vh, 1.8rem);
+}
+
+.card__media {
+  display: grid;
+  gap: clamp(0.9rem, 1.8vw, 1.4rem);
+  align-content: start;
+}
+
+/* --------------------------------------------------------------------------
+   11. Capability bento: asymmetric, cell count matches item count
+   -------------------------------------------------------------------------- */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.3vw, 1.15rem);
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+}
+
+.cell {
+  position: relative;
+  grid-column: span 2;
+  display: flex;
+  overflow: hidden;
+  min-height: clamp(14rem, 26vh, 19rem);
+  padding: var(--shell-pad);
+  border: 1px solid var(--line);
+  border-radius: var(--r-a);
+  background: var(--ink-3);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--bone) 7%, transparent);
+}
+.cell--wide {
+  grid-column: span 4;
+}
+.cell__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: clamp(1.2rem, 2.2vw, 1.9rem);
+  border-radius: var(--r-b);
+  background: var(--ink-2);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--bone) 5%, transparent);
+}
+.cell h3 {
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+}
+.cell p {
+  margin-top: 0.65rem;
+  max-width: 42ch;
+  font-size: 0.9375rem;
+  line-height: 1.58;
+  color: var(--haze);
+}
+.cell .tags {
+  margin-top: auto;
+  padding-top: clamp(1rem, 2vh, 1.5rem);
+}
+
+/* Two cells carry a real artifact: a strip of the product along the base. */
+.cell--shot-a,
+.cell--shot-b {
+  padding-bottom: 0;
+}
+.cell--shot-a .cell__body,
+.cell--shot-b .cell__body {
+  padding-bottom: clamp(5rem, 10vh, 7.5rem);
+}
+.cell--shot-a::after,
+.cell--shot-b::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 56%;
+  z-index: 1;
+  background-size: cover;
+  background-position: top center;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 52%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 52%, #000 100%);
+  opacity: 0.62;
+  border-top: 1px solid var(--line);
+}
+.cell--shot-a::after {
+  background-image: url("/media/plates/satpath-sub.jpg");
+}
+.cell--shot-b::after {
+  background-image: url("/media/plates/lens-teach.jpg");
+}
+
+/* --------------------------------------------------------------------------
+   12. Stack spec sheet
+   -------------------------------------------------------------------------- */
+.spec {
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  border-top: 1px solid var(--line);
+}
+.spec__row {
+  display: grid;
+  grid-template-columns: clamp(7rem, 13vw, 11rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  padding-block: clamp(1.05rem, 2.2vh, 1.5rem);
+  border-bottom: 1px solid var(--line-soft);
+}
+.spec__row:last-child {
+  border-bottom-color: var(--line);
+}
+.spec dt {
+  padding-top: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--dim);
+}
+.spec dd {
+  font-size: clamp(0.95rem, 1.15vw, 1.0625rem);
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--bone) 84%, var(--haze));
+}
+
+/* --------------------------------------------------------------------------
+   13. Process rail
+   -------------------------------------------------------------------------- */
+.rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+}
+.rail::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--line);
+}
+.rail__step {
+  position: relative;
+  padding-top: clamp(1.4rem, 3vh, 2.1rem);
+}
+.rail__step::before {
+  content: "";
+  position: absolute;
+  top: -3.5px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-pill);
+  background: var(--acid);
+}
+.rail__step h3 {
+  margin-top: 0.55rem;
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+}
+.rail__step p:last-child {
+  margin-top: 0.6rem;
+  font-size: 0.9375rem;
+  line-height: 1.58;
+  color: var(--haze);
+}
+
+/* --------------------------------------------------------------------------
+   14. Closing
+   -------------------------------------------------------------------------- */
+.closing .display {
+  font-size: clamp(2.7rem, 7.6vw, 6.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+
+.terms {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2.2rem);
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+}
+.terms > div {
+  padding-top: clamp(0.9rem, 1.8vh, 1.2rem);
+  border-top: 1px solid var(--line);
+}
+.terms dt {
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--dim);
+}
+.terms dd {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--bone);
+}
+
+.closing__cta {
+  margin-top: clamp(2.5rem, 6vh, 3.5rem);
+}
+
+/* --------------------------------------------------------------------------
+   15. Footer
+   -------------------------------------------------------------------------- */
+.foot {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(1.75rem, 4vh, 2.5rem);
+}
+.foot__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.foot__links {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+.foot__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.55rem;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--haze);
+  transition: color 0.4s var(--ease);
+}
+.foot__links a:hover {
+  color: var(--acid);
+}
+
+/* --------------------------------------------------------------------------
+   16. Motion
+   Transform and opacity only, never layout properties.
+   Scroll reveals are pure CSS (scroll-driven) so content is never hidden
+   when JavaScript does not run.
+   -------------------------------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Range is expressed in the entry phase, not a fraction of cover: a
+       cover-based range near the end of the document can never reach 100%,
+       which would leave the final call to action permanently half faded. */
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 62%;
+    }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card,
+  .cell {
+    transition: border-color 0.5s var(--ease);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   17. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .terms {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  :root {
+    --stick: 6rem;
+  }
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 6vh, 3rem);
+  }
+  .nav__links {
+    display: none;
+  }
+  .card__core {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .card {
+    position: relative;
+    top: auto;
+  }
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cell,
+  .cell--wide {
+    grid-column: span 1;
+  }
+  .cell--wide {
+    grid-column: span 2;
+  }
+  .rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: clamp(2rem, 5vh, 3rem);
+  }
+}
+
+/* Tablet: the hero is single column here, so the cascade reads as a compact
+   three-up row rather than a tall overlapping stack. */
+@media (max-width: 980px) {
+  .cascade {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .cascade__item[data-cascade] {
+    width: 100%;
+    margin-top: 0;
+    justify-self: stretch;
+  }
+  .cascade__item .plate {
+    transform: none;
+    padding: 5px;
+    border-radius: var(--r-b);
+  }
+  .cascade__item .plate img {
+    border-radius: var(--r-c);
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: auto;
+    padding-block: clamp(6.5rem, 16vh, 8rem) clamp(3rem, 8vh, 4rem);
+  }
+  .hero__title {
+    font-size: clamp(2.6rem, 13vw, 4rem);
+  }
+  .cascade__cap {
+    font-size: 0.6rem;
+    word-break: break-all;
+  }
+  .spec__row,
+  .terms,
+  .bento,
+  .rail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cell--wide {
+    grid-column: span 1;
+  }
+  .cell {
+    min-height: 0;
+  }
+  .cell--shot-a .cell__body,
+  .cell--shot-b .cell__body {
+    padding-bottom: clamp(4rem, 14vw, 6rem);
+  }
+  .btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .btn--ghost {
+    width: auto;
+  }
+  .foot__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18. Reduced motion: everything resolves to its final state
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  /* Stickiness is layout, not motion, so the stack stays. Only the
+     scroll-linked scale and fade are dropped. */
+  .card {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,42 +1,462 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Singh — night shift, Bhilai</title>
-  <meta name="description" content="Devashish Singh, Bhilai. Live work: satpath.in, doctorashishasingh.com. Next.js, RAG, Python. You keep the code." />
-  <link rel="canonical" href="https://www.devashish98.xyz/" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Singh — night shift, Bhilai" />
-  <meta property="og:description" content="Live work: satpath.in and doctorashishasingh.com. You keep the code." />
-  <meta property="og:url" content="https://www.devashish98.xyz/" />
-  <meta property="og:image" content="https://www.devashish98.xyz/media/pdf-lens-teach.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#0a0704" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Devashish Singh",
-    "url": "https://www.devashish98.xyz/",
-    "jobTitle": "Product builder",
-    "address": { "@type": "PostalAddress", "addressLocality": "Bhilai", "addressRegion": "Chhattisgarh", "addressCountry": "IN" },
-    "alumniOf": "Bhilai Institute of Technology, Raipur",
-    "sameAs": [
-      "https://github.com/Devashishsingh98",
-      "https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a",
-      "https://x.com/devashishsin98"
-    ]
-  }
-  </script>
-</head>
-<body>
-  <a class="skip" href="#out">Skip to hire</a>
-  <div id="mill"></div>
-  <script type="module" src="/src/main.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>document.documentElement.classList.add("js");</script>
+
+    <title>Devashish Singh, full-stack and AI engineer. satpath.in, doctorashishasingh.com</title>
+    <meta
+      name="description"
+      content="Devashish Singh builds and ships web products end to end. Live work: satpath.in, doctorashishasingh.com, PDF Lens. Next.js, Python, and the AI layer."
+    />
+    <link rel="canonical" href="https://www.devashish98.xyz/" />
+    <meta name="theme-color" content="#0A0B0C" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.devashish98.xyz/" />
+    <meta property="og:title" content="Devashish Singh, full-stack and AI engineer" />
+    <meta
+      property="og:description"
+      content="Three products live in production: a Hindi newspaper, a dental clinic, an AI reading tool. I built the front end, the back end, and the deployment."
+    />
+    <meta property="og:image" content="https://www.devashish98.xyz/media/plates/satpath-hi.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@devashishsin98" />
+
+    <link rel="preload" href="/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/clash-display-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/src/styles/atelier.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Devashish Singh",
+        "jobTitle": "Full-stack and AI engineer",
+        "url": "https://www.devashish98.xyz/",
+        "address": { "@type": "PostalAddress", "addressLocality": "Bhilai", "addressRegion": "Chhattisgarh", "addressCountry": "IN" },
+        "alumniOf": "Bhilai Institute of Technology, Raipur",
+        "knowsAbout": ["Next.js", "React", "TypeScript", "Python", "FastAPI", "RAG", "PostgreSQL", "AWS"],
+        "sameAs": [
+          "https://github.com/Devashishsingh98",
+          "https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a",
+          "https://x.com/devashishsin98"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip" href="#work">Skip to the work</a>
+    <div class="progress" aria-hidden="true"><i></i></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="nav" data-nav>
+      <div class="nav__pill">
+        <a class="nav__mark" href="#top">
+          <b>Devashish Singh</b>
+          <span>Bhilai, India · IST</span>
+        </a>
+        <nav class="nav__links" aria-label="Sections">
+          <a href="#work">Work</a>
+          <a href="#capability">Capability</a>
+          <a href="#stack">Stack</a>
+          <a href="#process">Process</a>
+        </nav>
+        <a
+          class="btn btn--acid btn--sm"
+          href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span>Start a project</span>
+          <span class="orb" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero__halo" aria-hidden="true"></div>
+        <div class="wrap hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow">Available for new work</p>
+            <h1 class="hero__title">
+              <span class="line"><span>I ship the</span></span>
+              <span class="line"><span>whole thing.</span></span>
+            </h1>
+            <p class="hero__sub">
+              Live now: a Hindi newspaper, a dental clinic, an AI reading tool. Next.js,
+              Python, and code you own.
+            </p>
+            <div class="hero__cta">
+              <a
+                class="btn btn--acid"
+                href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>Start a project</span>
+                <span class="orb" aria-hidden="true">↗</span>
+              </a>
+              <a class="btn btn--ghost" href="#work"><span>See the work</span></a>
+            </div>
+          </div>
+
+          <ul class="cascade" aria-label="Products currently live">
+            <li class="cascade__item" data-cascade="0">
+              <figure class="plate plate--hero">
+                <img
+                  src="/media/plates/clinic-hero.jpg"
+                  srcset="/media/plates/clinic-hero@700.jpg 700w, /media/plates/clinic-hero.jpg 1400w"
+                  sizes="(max-width: 900px) 80vw, 30vw"
+                  width="1400" height="875" fetchpriority="high" decoding="async"
+                  alt="Homepage for Dr. Ashisha Singh, a prosthodontist in Rajnandgaon"
+                />
+              </figure>
+              <p class="cascade__cap">doctorashishasingh.com</p>
+            </li>
+            <li class="cascade__item" data-cascade="1">
+              <figure class="plate plate--hero">
+                <img
+                  src="/media/plates/lens-live.jpg"
+                  srcset="/media/plates/lens-live@700.jpg 700w, /media/plates/lens-live.jpg 1400w"
+                  sizes="(max-width: 900px) 80vw, 26vw"
+                  width="1400" height="875" loading="lazy" decoding="async"
+                  alt="PDF Lens workspace showing a document open with a highlighted sentence"
+                />
+              </figure>
+              <p class="cascade__cap">pdflens.in <em>in testing</em></p>
+            </li>
+            <li class="cascade__item" data-cascade="2">
+              <figure class="plate plate--hero">
+                <img
+                  src="/media/plates/satpath-hi.jpg"
+                  srcset="/media/plates/satpath-hi@700.jpg 700w, /media/plates/satpath-hi.jpg 1400w"
+                  sizes="(max-width: 900px) 80vw, 26vw"
+                  width="1400" height="875" loading="lazy" decoding="async"
+                  alt="SAT PATH homepage with a Hindi masthead and the day's local stories below it"
+                />
+              </figure>
+              <p class="cascade__cap">satpath.in</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="work" id="work">
+        <div class="wrap">
+          <h2 class="h2 reveal">Three things running in production.</h2>
+          <p class="lead reveal">
+            Real domains, real users, no mockups. I built the interface, the server and the
+            deployment for each one. Under every screenshot is exactly what shipped.
+          </p>
+        </div>
+
+        <div class="wrap stack">
+          <!-- CLINIC -->
+          <article class="card" id="clinic">
+            <div class="card__core">
+              <div class="card__copy">
+                <p class="mono card__domain">doctorashishasingh.com</p>
+                <h3 class="card__title">Dr. Ashisha Singh</h3>
+                <p class="card__lede">
+                  A prosthodontist in Rajnandgaon. Patients were finding her in directory
+                  listings. Now they find her on her own domain, in language they can read.
+                </p>
+                <p class="mono card__label">What shipped</p>
+                <ul class="did">
+                  <li>Custom Next.js site, no page builder and no template</li>
+                  <li>Treatments in plain words: crowns, bridges, dentures, implants</li>
+                  <li>Maps for the clinic and for training at GDC Raipur and CDCRI</li>
+                  <li>A contact path that works with one thumb on a phone</li>
+                  <li>Structured data and meta so the practice surfaces in local search</li>
+                </ul>
+                <ul class="tags">
+                  <li>Next.js</li><li>React</li><li>TypeScript</li><li>Tailwind</li><li>Vercel</li>
+                </ul>
+                <a
+                  class="btn btn--acid"
+                  href="https://doctorashishasingh.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>Open doctorashishasingh.com</span><span class="orb" aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <div class="card__media">
+                <figure class="plate">
+                  <img
+                    src="/media/plates/clinic-hero.jpg"
+                    srcset="/media/plates/clinic-hero@700.jpg 700w, /media/plates/clinic-hero.jpg 1400w"
+                    sizes="(max-width: 900px) 92vw, 44vw"
+                    width="1400" height="875" loading="lazy" decoding="async"
+                    alt="The clinic homepage introducing Dr. Ashisha Singh and her practice"
+                  />
+                  <figcaption>A practice page that reads like a person, not a brochure</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+          <!-- PDF LENS -->
+          <article class="card" id="lens">
+            <div class="card__core">
+              <div class="card__copy">
+                <p class="mono card__domain">pdflens.in</p>
+                <h3 class="card__title">PDF Lens</h3>
+                <p class="card__lede">
+                  Reading a dense document normally means leaving the page to ask a chatbot.
+                  PDF Lens keeps the answer beside the sentence you highlighted.
+                </p>
+                <p class="mono card__label">What shipped</p>
+                <ul class="did">
+                  <li>Highlight any sentence, then pick Explain, Teach, Example or Code</li>
+                  <li>Answers open nested, so the thread never disappears mid-read</li>
+                  <li>Chat scoped to the document, with each answer tied to its page</li>
+                  <li>Embeddings run locally, so the file does not leave the machine</li>
+                  <li>In testing now. The repository stays private until it ships</li>
+                </ul>
+                <ul class="tags">
+                  <li>React</li><li>Express</li><li>pdf.js</li><li>RAG</li><li>Local embeddings</li>
+                </ul>
+                <a class="btn btn--acid" href="https://pdflens.in" target="_blank" rel="noreferrer">
+                  <span>Preview PDF Lens</span><span class="orb" aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <div class="card__media">
+                <figure class="plate">
+                  <img
+                    src="/media/plates/lens-live.jpg"
+                    srcset="/media/plates/lens-live@700.jpg 700w, /media/plates/lens-live.jpg 1400w"
+                    sizes="(max-width: 900px) 92vw, 44vw"
+                    width="1400" height="875" loading="lazy" decoding="async"
+                    alt="PDF Lens with a document open and the answer panel beside the text"
+                  />
+                  <figcaption>The reading surface, before a question is asked</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+          <!-- SAT PATH -->
+          <article class="card" id="satpath">
+            <div class="card__core">
+              <div class="card__copy">
+                <p class="mono card__domain">satpath.in</p>
+                <h3 class="card__title">SAT PATH</h3>
+                <p class="card__lede">
+                  A weekly Hindi newspaper in Durg and Bhilai, in print since 2008. They
+                  needed a desk that files seven days a week, not a page that waits for
+                  Thursday.
+                </p>
+                <p class="mono card__label">What shipped</p>
+                <ul class="did">
+                  <li>Hindi first, with a full English edition at <span class="mono">/en</span></li>
+                  <li>Thursday e-paper, unlocked by a paid subscription</li>
+                  <li>Razorpay checkout at 49 rupees for 30 days and 499 for a year</li>
+                  <li>Weather, Sensex and Nifty across the masthead</li>
+                  <li>Advertise, donate, grievance and legal pages</li>
+                  <li>Sections, search and an editor desk for daily filing</li>
+                </ul>
+                <ul class="tags">
+                  <li>Next.js</li><li>TypeScript</li><li>i18n</li><li>Razorpay</li><li>Vercel</li>
+                </ul>
+                <a class="btn btn--acid" href="https://satpath.in" target="_blank" rel="noreferrer">
+                  <span>Open satpath.in</span><span class="orb" aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <div class="card__media">
+                <figure class="plate">
+                  <img
+                    src="/media/plates/satpath-hi.jpg"
+                    srcset="/media/plates/satpath-hi@700.jpg 700w, /media/plates/satpath-hi.jpg 1400w"
+                    sizes="(max-width: 900px) 92vw, 44vw"
+                    width="1400" height="875" loading="lazy" decoding="async"
+                    alt="The SAT PATH masthead with the daily web desk and local reporting below it"
+                  />
+                  <figcaption>The masthead, and the desk that now files every morning</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- CAPABILITY -->
+      <section class="cap" id="capability">
+        <div class="wrap">
+          <h2 class="h2 reveal">What I take on.</h2>
+          <p class="lead reveal">
+            One person across the whole build, from the first screen to the server it runs on.
+          </p>
+
+          <div class="bento">
+            <article class="cell cell--wide reveal">
+              <div class="cell__body">
+                <h3>Product surfaces</h3>
+                <p>
+                  Interfaces built for real people on real phones, not just demoed on a
+                  laptop. Fast, readable and responsive down to 360 pixels.
+                </p>
+                <ul class="tags">
+                  <li>Next.js</li><li>React</li><li>TypeScript</li><li>Tailwind</li><li>Vite</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="cell cell--shot-a reveal">
+              <div class="cell__body">
+                <h3>AI that stays grounded</h3>
+                <p>
+                  Retrieval, embeddings and streaming answers that stay tied to the source
+                  instead of inventing one.
+                </p>
+                <ul class="tags">
+                  <li>RAG</li><li>Embeddings</li><li>Agents</li><li>OpenAI</li><li>Gemini</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="cell cell--shot-b reveal">
+              <div class="cell__body">
+                <h3>Python behind the scenes</h3>
+                <p>APIs, queues and scrapers that run on a schedule with nobody watching.</p>
+                <ul class="tags">
+                  <li>FastAPI</li><li>Django</li><li>Flask</li><li>Celery</li><li>Scrapy</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="cell cell--wide reveal">
+              <div class="cell__body">
+                <h3>Deploy and keep alive</h3>
+                <p>
+                  Ship it, wire the database, put it behind a domain with TLS, then hand over
+                  the keys and the repository on the way out.
+                </p>
+                <ul class="tags">
+                  <li>AWS</li><li>Vercel</li><li>Docker</li><li>Linux</li><li>Nginx</li>
+                  <li>Postgres</li><li>Redis</li><li>CI/CD</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- STACK -->
+      <section class="stacksec" id="stack">
+        <div class="wrap">
+          <h2 class="h2 reveal">Tools I reach for.</h2>
+          <dl class="spec">
+            <div class="spec__row reveal">
+              <dt class="mono">Frontend</dt>
+              <dd>Next.js · React · TypeScript · JavaScript · Tailwind · HTML5 · CSS3 · Vite</dd>
+            </div>
+            <div class="spec__row reveal">
+              <dt class="mono">Backend</dt>
+              <dd>Node · Python · FastAPI · Django · Flask · Celery · REST APIs · Jinja2</dd>
+            </div>
+            <div class="spec__row reveal">
+              <dt class="mono">AI</dt>
+              <dd>RAG · Embeddings · Agents · OpenAI · Gemini · Streaming · Prompt design</dd>
+            </div>
+            <div class="spec__row reveal">
+              <dt class="mono">Data</dt>
+              <dd>PostgreSQL · MySQL · Redis · Supabase · Schema and system design</dd>
+            </div>
+            <div class="spec__row reveal">
+              <dt class="mono">Runtime</dt>
+              <dd>AWS · Vercel · Docker · Linux · Nginx · Git · CI/CD</dd>
+            </div>
+            <div class="spec__row reveal">
+              <dt class="mono">Automation</dt>
+              <dd>Scrapy · Telethon · Tesseract · Scheduled jobs · Third-party APIs</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process" id="process">
+        <div class="wrap">
+          <h2 class="h2 reveal">Seven days, start to live.</h2>
+          <p class="lead reveal">
+            A fixed scope and a fixed price before any code is written, and a real preview
+            URL from the second day.
+          </p>
+
+          <ol class="rail">
+            <li class="rail__step reveal">
+              <p class="mono">Day 1</p>
+              <h3>Scope it</h3>
+              <p>One written page: what is in, what is out, what it costs, when it lands.</p>
+            </li>
+            <li class="rail__step reveal">
+              <p class="mono">Days 2 to 5</p>
+              <h3>Build it</h3>
+              <p>Working screens on a preview URL you can open any time, not a status update.</p>
+            </li>
+            <li class="rail__step reveal">
+              <p class="mono">Day 6</p>
+              <h3>Harden it</h3>
+              <p>Mobile pass, SEO, structured data, analytics and a speed check on real hardware.</p>
+            </li>
+            <li class="rail__step reveal">
+              <p class="mono">Day 7</p>
+              <h3>Hand it over</h3>
+              <p>Your domain, your repository, your keys and a walkthrough of how it runs.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- CLOSING -->
+      <section class="closing">
+        <div class="wrap">
+          <h2 class="display reveal">Tell me what<br />needs building.</h2>
+          <p class="lead reveal">
+            Send the scope. If it fits, you get a fixed price and a date before any code starts.
+          </p>
+
+          <dl class="terms reveal">
+            <div><dt class="mono">Engagement</dt><dd>Fixed price, 1,500 to 4,000 USD</dd></div>
+            <div><dt class="mono">Escrow</dt><dd>Half up front, held through Upwork</dd></div>
+            <div><dt class="mono">Hourly</dt><dd>60 to 80 USD when the scope cannot be fixed</dd></div>
+            <div><dt class="mono">Timezone</dt><dd>IST, with an overlap across US mornings</dd></div>
+            <div><dt class="mono">Capacity</dt><dd>About 30 hours a week, a few clients at a time</dd></div>
+            <div><dt class="mono">Handover</dt><dd>Repository, domain and keys are yours</dd></div>
+          </dl>
+
+          <div class="closing__cta reveal">
+            <a
+              class="btn btn--acid btn--lg"
+              href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Start a project</span><span class="orb" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot__inner">
+        <p class="mono">© 2026 Devashish Singh · Bhilai, India</p>
+        <nav class="foot__links" aria-label="Elsewhere">
+          <a href="https://github.com/Devashishsingh98" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.upwork.com/freelancers/~01cfcd81e60f9bb55a" target="_blank" rel="noreferrer">Upwork</a>
+          <a href="https://x.com/devashishsin98" target="_blank" rel="noreferrer">X</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
